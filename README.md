@@ -1,1 +1,1 @@
-# PwsdManager
+# Bitcoin Password Manager
