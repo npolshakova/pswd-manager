@@ -158,6 +158,7 @@ public class PswdManagerClient {
      */
     private static String p2fk(String msg) {
         String addr = Utils.sha256hash160(msg.getBytes()).toString();
+        System.out.println(addr);
         return addr;
     }
 

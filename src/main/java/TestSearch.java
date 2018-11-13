@@ -35,6 +35,7 @@ public class TestSearch {
             JsonParser parser = new JsonParser();
             JsonObject jo = parser.parse(body).getAsJsonObject();
             System.out.println(jo.get("inputs"));
+            System.out.println(jo.get("out"));
         } else {
             System.out.println("ERROR! " + response.getStatus());
             System.out.println(response.getEntity());
