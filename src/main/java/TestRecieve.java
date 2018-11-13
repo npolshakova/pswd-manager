@@ -62,6 +62,10 @@ public class TestRecieve {
         System.out.println(kit.wallet().getBalance());
         System.out.println(tx.getHashAsString());
 
+
+        // From mriqZ2eCT2hBmpKyMS4q33MoFEVyR4p1fu to mwyPZ4i9h3zYFx6BdiH6aKftqCHxr2txtG
+        //6003c2861f78fc1d040e57df2762029fc139960871c0bba5a3434011d621bc37
+
     }
 
 }

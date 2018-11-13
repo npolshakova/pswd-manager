@@ -87,6 +87,16 @@ public class PswdManagerClient {
     }
 
     /**
+     * Returns credentials for an input transaction hash
+     * @param txHash
+     * @return
+     */
+    private static String recoverCredentials(String txHash) {
+
+        return null;
+    }
+
+    /**
      * Encrypts input message
      * @param msg
      * @return

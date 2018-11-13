@@ -20,6 +20,17 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>api-v1-client-java-mvn-repo</id>
+            <url>https://raw.githubusercontent.com/blockchain/api-v1-client-java/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.bitcoinj/bitcoinj-parent -->
         <dependency>
@@ -48,6 +59,21 @@
             <version>0.14.7</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>info.blockchain</groupId>
+            <artifactId>api</artifactId>
+            <version>LATEST</version> <!-- for a specific version see the list of tags -->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.25.1</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
