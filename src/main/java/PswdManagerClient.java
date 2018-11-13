@@ -162,20 +162,6 @@ public class PswdManagerClient {
         return addr;
     }
 
-    /**
-     * Testing: p2pkh from Data Insertion in Bitcoin’s Blockchain
-     */
-    private static Script p2pkh(ECKey key) {
-        ScriptBuilder script = new ScriptBuilder();
-        script.addChunk(new ScriptChunk(ScriptOpCodes.OP_DUP, null));
-        script.addChunk(new ScriptChunk(ScriptOpCodes.OP_HASH160, null));
-        script.data(key.getPubKeyHash());
-        script.addChunk(new ScriptChunk(ScriptOpCodes.OP_EQUALVERIFY,
-                null));
-        script.addChunk(new ScriptChunk(ScriptOpCodes.OP_CHECKSIG, null));
-        return script.build();
-    }
-
     private static Script p2pk(ECKey key) {
         ScriptBuilder script = new ScriptBuilder();
         script.data(key.getPubKeyHash());
@@ -183,16 +169,6 @@ public class PswdManagerClient {
         return script.build();
     }
 
-    private static Script P2SH(RedeemData redeemScriptHash) {
-        Script rsh = redeemScriptHash.redeemScript;
-        ScriptBuilder script = new ScriptBuilder();
-        script.addChunk(new ScriptChunk(ScriptOpCodes.OP_HASH160, null));
-        for(ScriptChunk r : rsh.getChunks()) {
-            script.addChunk(r);
-        }
-        script.addChunk(new ScriptChunk(ScriptOpCodes.OP_EQUAL, null));
-        return script.build();
-    }
 
     private static Script opReturn(String data) {
         ScriptBuilder script = new ScriptBuilder();
@@ -233,23 +209,6 @@ public class PswdManagerClient {
         return  "";
     }
 
-    public static TransactionInput addInputToTransaction(Transaction tx,
-                                                        long index, String hash, Script scriptPubKey) {
-        return tx.addInput(Sha256Hash.wrap(hash), index, scriptPubKey);
-    }
-
-    public static void signInput(Transaction tx, TransactionInput input,
-                                 ECKey key, Script script, int index) {
-        ScriptBuilder sigScript = new ScriptBuilder();
-        Sha256Hash hash = tx.hashForSignature(index, script, Transaction.SigHash.ALL, false);
-        ECKey.ECDSASignature ecSig = key.sign(hash);
-        TransactionSignature txSig = new TransactionSignature(ecSig,
-                Transaction.SigHash.ALL, false);
-        sigScript.data(0, txSig.encodeToBitcoin());
-        // Add any additional data/pubkeys/etc. to the SigScript here.
-        Script scriptWithSig = sigScript.build();
-        input.setScriptSig(scriptWithSig);
-    }
 
     // DATABASE SETUP
 
