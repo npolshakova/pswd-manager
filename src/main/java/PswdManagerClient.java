@@ -25,6 +25,7 @@ import org.bitcoinj.script.ScriptBuilder;
 import org.bitcoinj.script.ScriptChunk;
 import org.bitcoinj.script.ScriptOpCodes;
 import org.bitcoinj.wallet.RedeemData;
+import org.bitcoinj.wallet.SendRequest;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -40,8 +41,10 @@ public class PswdManagerClient {
 
         // Parse the address given as the first parameter.
         //Address forwardingAddress = new Address(params, args[0]);
-        Address myAddress = new Address(params, "mwyPZ4i9h3zYFx6BdiH6aKftqCHxr2txtG");
-        Address sendAddress =  new Address(params, "moccUWfWVngRxQUzjHcwuneiisvrwxXdrJ");
+        // WALLET: mjeRT11pcit25MjsNHRFY7HHjhaHjSpDUp
+        //n1MtSNwhekB5KbKqwLB8HTgy78UqxcV1GF
+        final Address myAddress = Address.fromBase58(params, "mwyPZ4i9h3zYFx6BdiH6aKftqCHxr2txtG");
+        Address sendAddress =  Address.fromBase58(params, "moccUWfWVngRxQUzjHcwuneiisvrwxXdrJ");
 
         // Start up a basic app using a class that automates some boilerplate. Ensure we always have at least one key.
         WalletAppKit kit = new WalletAppKit(params, new File("."), filePrefix) {
@@ -52,15 +55,11 @@ public class PswdManagerClient {
                 // on the main thread.
                 if (wallet().getKeyChainGroupSize() < 1)
                     wallet().importKey(new ECKey());
+                    //wallet().importKey(DumpedPrivateKey.fromBase58(params, "mwyPZ4i9h3zYFx6BdiH6aKftqCHxr2txtG").getKey());
             }
         };
 
 
-        if (params == RegTestParams.get()) {
-            // Regression test mode is designed for testing and development only, so there's no public network for it.
-            // If you pick this mode, you're expected to be running a local "bitcoind -regtest" instance.
-            kit.connectToLocalHost();
-        }
 
     // Download the block chain and wait until it's done.
         kit.startAsync();
@@ -68,6 +67,23 @@ public class PswdManagerClient {
 
         System.out.println(kit.wallet().getBalance());
         System.out.println(kit.wallet().currentReceiveAddress());
+
+
+        //SEND
+        Transaction tx = new Transaction(params);
+        Coin coinToSent = Coin.valueOf((long) 1.0);
+        Coin coinToChange = Coin.valueOf(kit.wallet().getBalance().getValue() - (long) 1.0);
+        tx.addOutput(coinToSent, sendAddress);
+        tx.addOutput(coinToChange, myAddress);
+
+        SendRequest request = SendRequest.forTx(tx);
+        try {
+            kit.wallet().completeTx(request);
+        } catch (InsufficientMoneyException e) {
+            e.printStackTrace();
+        }
+        kit.wallet().commitTx(request.tx);
+        kit.peerGroup().broadcastTransaction(request.tx);
     }
 
     /**
@@ -118,7 +134,7 @@ public class PswdManagerClient {
      * 8 - Adding 7 at the end of 4
      * 9 - Base58 encoding of 8
      *
-     * Compression flags (http://royalforkblog.github.io/2014/07/31/address-gen/)
+         * Compression flags (http://royalforkblog.github.io/2014/07/31/address-gen/)
      * Bitcoin =  0x80
      * Testnet = 0xEF
      */
