@@ -1,3 +1,5 @@
+package tests;
+
 import com.sun.istack.internal.NotNull;
 import org.bitcoinj.core.*;
 import org.bitcoinj.crypto.TransactionSignature;

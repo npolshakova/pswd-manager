@@ -43,6 +43,9 @@ public class PswdManagerClient {
         //Address forwardingAddress = new Address(params, args[0]);
         // WALLET: mjeRT11pcit25MjsNHRFY7HHjhaHjSpDUp
         //n1MtSNwhekB5KbKqwLB8HTgy78UqxcV1GF
+
+        // n3W1Kz8pCVuatRFSYwAGu7fPA1b18gqxoe
+        // nhelloworldthisdoesnotwork1234okay
         final Address myAddress = Address.fromBase58(params, "mwyPZ4i9h3zYFx6BdiH6aKftqCHxr2txtG");
         Address sendAddress =  Address.fromBase58(params, "moccUWfWVngRxQUzjHcwuneiisvrwxXdrJ");
 

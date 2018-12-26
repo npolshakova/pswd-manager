@@ -1,3 +1,5 @@
+package tests;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import info.blockchain.api.APIException;
