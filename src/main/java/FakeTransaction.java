@@ -21,9 +21,10 @@ public class FakeTransaction {
         //5424c715577803c10f2abc01b8da2fc9c26610bacb6a154ef11213bff992db6c
         String test = "n3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //"moccUWfWVngRxQUzjHcwuneiisvrwxXdrJ"; // 32 bytes
         String adr = getAddress(test);
+        System.out.println(adr);
 
         // checksum 4bytes, testnet 4 bytes
-        final Address myAddress = Address.fromBase58(params, "n4n8PBwjMZHdCYu9jJ2rWyce5ukVgu3r2N");
+        //final Address myAddress = Address.fromBase58(params, "n4n8PBwjMZHdCYu9jJ2rWyce5ukVgu3r2N");
         Address sendAddress1 =  Address.fromBase58(params, adr);
 
         // Start up a basic app using a class that automates some boilerplate. Ensure we always have at least one key.
@@ -53,10 +54,10 @@ public class FakeTransaction {
         // setCoinSelector
         // kit.wallet().setCoinSelector();
         //kit.wallet().getIssuedReceiveKeys()
-//        List<TransactionOutput> ti = kit.wallet().calculateAllSpendCandidates();
-//        for (TransactionOutput t : ti) {
-//            System.out.println(t.toString());
-//        }
+        List<TransactionOutput> ti = kit.wallet().calculateAllSpendCandidates();
+        for (TransactionOutput t : ti) {
+            System.out.println(t.toString());
+        }
         List<ECKey> keys = kit.wallet().getIssuedReceiveKeys();
         for(ECKey k : keys) {
             System.out.println(k);

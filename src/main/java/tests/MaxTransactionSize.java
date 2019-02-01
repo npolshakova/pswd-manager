@@ -10,15 +10,15 @@ import java.io.File;
 
 public class MaxTransactionSize {
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InterruptedException {
         //n3xxxxxxxxxxxxxxxxxxxxxxxxxxeexxxx
 
         NetworkParameters params = TestNet3Params.get();
         String filePrefix = "forwarding-service-testnet";
         String test1 = "n3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        String test2 = "n3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxy";
-        String test3 = "n3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxzz";
-        String test4 = "n3xxxxxxxxxxxxxxxxxxxxxxxxxxxxwwww";
+        String test2 = "n3ninaisverysadbcshecantuseabcdefg"; //n3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxy
+        String test3 = "n3whycruexwrdxxxxxxxxxxxxxxxxxxxxx"; //n3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxzz
+        String test4 = "n3criessaddnessxxxxxxxxxxxxxxxxxxx"; //n3xxxxxxxxxxxxxxxxxxxxxxxxxxxxwwww
         String test5 = "n3xxxxxxxxxxxxxxxxxxxxxxxxxxeexxxx";
         String test6 = "n3xxxxxxxxxxxxxxxxxxxxxxxxxfffffff";
         String test7 = "n3xxxxxxxxxxxxxxxxxxxxxxxxxnnnnnnn";
@@ -51,6 +51,7 @@ public class MaxTransactionSize {
 
         kit.startAsync();
         kit.awaitRunning();
+        Thread.sleep(15000);
 
         kit.wallet().allowSpendingUnconfirmedTransactions();
         CoinSelector c = kit.wallet().getCoinSelector();
@@ -77,10 +78,13 @@ public class MaxTransactionSize {
         }
         kit.wallet().commitTx(request.tx);
         kit.peerGroup().broadcastTransaction(request.tx);
+
+        Thread.sleep(15000);
     }
 
 
     public static String getAddress(String input) {
+        System.out.println(input);
         byte[] base58dec = Base58.decode(input);
         byte[] tmp = new byte[base58dec.length - 4];
         for(int i = 0; i < base58dec.length - 4; i++) {
