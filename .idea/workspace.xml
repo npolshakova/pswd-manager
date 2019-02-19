@@ -2,23 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7de47318-058d-4115-ba1c-c8ed5e18b6a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/btree/BinaryTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/btree/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tests/TinyTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/RedoTransaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bitcoinpswd.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bitcoinpswd.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forwarding-service-testnet.spvchain" beforeDir="false" afterPath="$PROJECT_DIR$/forwarding-service-testnet.spvchain" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forwarding-service-testnet.wallet" beforeDir="false" afterPath="$PROJECT_DIR$/forwarding-service-testnet.wallet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FakeTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FakeTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tests/MaxTransactionSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tests/MaxTransactionSize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tests/TestSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tests/TestSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/FakeTransaction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/FakeTransaction$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/FakeTransaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/FakeTransaction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/HttpTestnetClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tests/HttpTestnetClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tests/MaxTransactionSize.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tests/MaxTransactionSize.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tests/TinyTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tests/TinyTree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet4019976524072507706.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet5134024875216139838.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet516523211890016383.tmp" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tests/TinyTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="812">
-              <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+            <state relative-caret-position="725">
+              <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,10 +34,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tests/TransactionTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1450">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestSearch.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="319">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <caret line="29" column="82" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="82" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="957">
+              <caret line="33" column="117" selection-start-line="33" selection-start-column="117" selection-end-line="33" selection-end-column="117" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,15 +67,44 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/btree/BinaryTree.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FakeTransaction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1885">
-              <caret line="65" column="28" lean-forward="true" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+            <state relative-caret-position="2436">
+              <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#191#192#0" expanded="true" />
-                <element signature="e#233#234#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/RedoTransaction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1595">
+              <caret line="55" column="68" selection-start-line="55" selection-start-column="68" selection-end-line="55" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#encodeChecked#0;class#RedoTransaction#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/bitcoinj/bitcoinj-core/0.14.7/bitcoinj-core-0.14.7.jar!/org/bitcoinj/core/Base58.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3248">
+              <caret line="116" column="63" selection-start-line="116" selection-start-column="63" selection-end-line="116" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2784">
+              <caret line="96" column="35" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -74,6 +116,7 @@
       <list>
         <option value="Kotlin File" />
         <option value="Class" />
+        <option value="Singleton" />
       </list>
     </option>
   </component>
@@ -95,6 +138,9 @@
       <find>filePrefix</find>
       <find>decode</find>
       <find>tx</find>
+      <find>2122232425262728292A2BFF2C2D2E2F303132</find>
+      <find>6FF63E246C92311B4FA83EF2E8C878C508A37136C2</find>
+      <find>68656c6c6f776f72</find>
     </findStrings>
     <replaceStrings>
       <replace>PswdManagerClient</replace>
@@ -129,13 +175,14 @@
         <option value="$PROJECT_DIR$/src/main/java/btree/BTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/btree/Lookup.java" />
         <option value="$PROJECT_DIR$/src/main/java/tests/TransactionTree.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java" />
         <option value="$PROJECT_DIR$/src/main/java/tests/MaxTransactionSize.java" />
         <option value="$PROJECT_DIR$/src/main/java/btree/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/btree/BinaryTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/tests/TestSearch.java" />
         <option value="$PROJECT_DIR$/src/main/java/FakeTransaction.java" />
         <option value="$PROJECT_DIR$/src/main/java/tests/TinyTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RedoTransaction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java" />
       </list>
     </option>
   </component>
@@ -166,8 +213,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -221,12 +266,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549039554045" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550600071362" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -264,15 +311,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSearch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tests.TestSearch" />
+    <configuration name="RedoTransaction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RedoTransaction" />
       <module name="bitcoinpswd" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -306,17 +347,17 @@
     <list>
       <item itemvalue="Application.CheckUpdate" />
       <item itemvalue="Application.TinyTree" />
-      <item itemvalue="Application.TestSearch" />
       <item itemvalue="Application.TestTransaction" />
       <item itemvalue="Application.FakeTransaction" />
+      <item itemvalue="Application.RedoTransaction" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CheckUpdate" />
+        <item itemvalue="Application.RedoTransaction" />
         <item itemvalue="Application.TinyTree" />
         <item itemvalue="Application.FakeTransaction" />
         <item itemvalue="Application.TestTransaction" />
-        <item itemvalue="Application.TestSearch" />
       </list>
     </recent_temporary>
   </component>
@@ -359,11 +400,20 @@
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="108406000" />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="134" y="35" width="3706" height="2125" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3410724" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35351023" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -372,14 +422,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32859176" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32060248" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32060248" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32974717" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.22190611" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.22162452" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3281334" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -441,29 +491,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/btree/Key.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/btree/Tree.kt" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="83" column="35" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bitcoinj/bitcoinj-core/0.14.7/bitcoinj-core-0.14.7.jar!/org/bitcoinj/core/Base58.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/btree/TestStructure.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/btree/Lookup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TransactionTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -502,13 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestSend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.3/gson-2.3.jar!/com/google/gson/JsonObject.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="553">
@@ -527,27 +552,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestRecieve.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-518">
-          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestTransaction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="845">
           <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestSearch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1135">
-          <caret line="99" column="41" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -561,13 +569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/PswdManagerClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="812">
@@ -575,31 +576,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FakeTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1367">
-          <caret line="56" selection-start-line="56" selection-end-line="59" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getAddress#0;class#FakeTransaction#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/btree/BinaryTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1885">
-          <caret line="65" column="28" lean-forward="true" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#191#192#0" expanded="true" />
@@ -608,10 +588,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestSend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestAddress.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1465">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestRecieve.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tests/TinyTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+        <state relative-caret-position="725">
+          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TransactionTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1450">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tests/TestSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="29" column="82" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FakeTransaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2436">
+          <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bitcoinj/bitcoinj-core/0.14.7/bitcoinj-core-0.14.7.jar!/org/bitcoinj/core/Base58.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3248">
+          <caret line="116" column="63" selection-start-line="116" selection-start-column="63" selection-end-line="116" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2784">
+          <caret line="96" column="35" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RedoTransaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1595">
+          <caret line="55" column="68" selection-start-line="55" selection-start-column="68" selection-end-line="55" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#encodeChecked#0;class#RedoTransaction#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="957">
+          <caret line="33" column="117" selection-start-line="33" selection-start-column="117" selection-end-line="33" selection-end-column="117" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
