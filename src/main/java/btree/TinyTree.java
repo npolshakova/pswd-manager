@@ -2,13 +2,15 @@ package btree;
 
 import org.bitcoinj.core.*;
 import org.bitcoinj.wallet.CoinSelector;
-import org.bitcoinj.wallet.SendRequest;
-import storage.EncryptAddress;
+import storage.GenerateAddress;
 import storage.WalletManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Test class for binary tree stored in blockchain
+ */
 public class TinyTree {
 
     private static String filler = "xxxxxxxx";
@@ -39,10 +41,10 @@ public class TinyTree {
     private static String blockchainMagic(Node root) {
         List<Address> toSend = new ArrayList<>();
 
-        Address addrValue = EncryptAddress.createAddress(root.value);
+        Address addrValue = GenerateAddress.createAddress(root.value);
         System.out.println("Address: " + addrValue.toString() + " original: " + root.value);
         toSend.add(addrValue);
-        Address id = EncryptAddress.createAddress("id:" + root.key + "xxxxxxxxxxxxxxxx");
+        Address id = GenerateAddress.createAddress("id:" + root.key + "xxxxxxxxxxxxxxxx");
         toSend.add(id);
 
         if(root.left != null) {
@@ -53,7 +55,7 @@ public class TinyTree {
                 if(s.length() < 18) { // TODO: generalize last case
                     s = s + filler;
                 }
-                toSend.add(EncryptAddress.createAddress("L" + count + s));
+                toSend.add(GenerateAddress.createAddress("L" + count + s));
                 count++;
             }
         }
@@ -66,7 +68,7 @@ public class TinyTree {
                 if(s.length() < 18) {
                     s = s + filler;
                 }
-                toSend.add(EncryptAddress.createAddress("R" + count + s));
+                toSend.add(GenerateAddress.createAddress("R" + count + s));
                 count++;
             }
         }

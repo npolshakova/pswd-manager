@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bitcoinpswd" />
+        <module name="bpwd" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bitcoinpswd" target="7" />
+      <module name="bpwd" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

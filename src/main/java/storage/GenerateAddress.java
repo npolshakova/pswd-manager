@@ -6,11 +6,15 @@ import org.bitcoinj.core.Base58;
 import org.bitcoinj.core.Sha256Hash;
 import storage.encryption.AES;
 
+public class GenerateAddress {
 
-public class EncryptAddress {
-
-
+    /**
+     * Given an input credential string, generates an address
+     * @param credentials Length must be less than 20
+     * @return Bitcoinj Base58 Address
+     */
     public static Address createAddress(String credentials) {
+            assert(credentials.length() <= 20);
             byte[] hexMsg = asciiToHexArray(credentials);
             String adr = encodeChecked(196, hexMsg);
             Address sendAddress =  Address.fromBase58(WalletManager.params, adr);
@@ -18,6 +22,7 @@ public class EncryptAddress {
 
     }
 
+    // TODO:
     public static Address createAddressEncrypted(String credentials) {
         AES a = null;
         try {
@@ -42,7 +47,7 @@ public class EncryptAddress {
     }
 
 
-    public static String encodeChecked(int version, byte[] payload) {
+    private static String encodeChecked(int version, byte[] payload) {
         // A stringified buffer is:
         // 1 byte version + data bytes + 4 bytes check code (a truncated hash)
         byte[] addressBytes = new byte[1 + payload.length + 4];
@@ -53,6 +58,7 @@ public class EncryptAddress {
         return Base58.encode(addressBytes);
     }
 
+    // TODO
     public static String decodeAddressEncrypted(String adr) {
         try {
             AES a = new AES();
@@ -65,6 +71,11 @@ public class EncryptAddress {
     }
 
 
+    /**
+     * Given an address string, returns the encoded original message
+     * @param adr
+     * @return
+     */
     public static String decodeAddress(String adr) {
         return hexToASCII(javax.xml.bind.DatatypeConverter.printHexBinary(Base58.decodeChecked(adr)));
     }

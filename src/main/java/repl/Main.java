@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * REPL to add, delete, search
+ */
 public class Main {
 
     public static String txHash = "334234f228eab414ea2395dbe6c34036a25505a76d5d3419153ed8b1f496d10d"; // TODO: Load tx from db

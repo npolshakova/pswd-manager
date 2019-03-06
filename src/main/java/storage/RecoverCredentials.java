@@ -12,11 +12,8 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RecoverCredentials {
 
@@ -31,6 +28,11 @@ public class RecoverCredentials {
 
     }
 
+    /**
+     * Finds all nodes stored in blockchain
+     * @param value Transaction Hash as String
+     * @param values Blockchain Nodes stored in blockchain
+     */
     public static void recoverAllValues(String value, List<BlockchainNode> values) {
         BlockchainNode bn = recoverValue(value);
         if(bn != null) {
@@ -51,6 +53,11 @@ public class RecoverCredentials {
         }
     }
 
+    /**
+     * Recovers one node stored in blockchain
+     * @param txHash Transaction Hash
+     * @return Blockchain Node stored at hash
+     */
     public static BlockchainNode recoverValue(String txHash) {
         Client client = ClientBuilder.newClient();
         WebTarget resource = client.target("https://api.blockcypher.com/v1/btc/test3/txs/" + txHash);
@@ -82,6 +89,11 @@ public class RecoverCredentials {
         }
     }
 
+    /**
+     * Reconstructs transaction from address strings
+     * @param addr
+     * @return
+     */
     private static BlockchainNode recoverTransactions(List<String> addr) {
         String[] left = {"", "", "", ""};
         String[] right = {"", "", "", ""};
@@ -90,7 +102,7 @@ public class RecoverCredentials {
         List<String> valueStrs = new ArrayList<>();
 
         for(String s : addr) {
-                s = EncryptAddress.decodeAddress(s);
+                s = GenerateAddress.decodeAddress(s);
                 if (s.charAt(1) == 'R') {
                     int index = Integer.parseInt(String.valueOf(s.charAt(2)));
                     if(s.substring(13,21).equals("xxxxxxxx")) {

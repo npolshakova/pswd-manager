@@ -1,7 +1,6 @@
 package storage;
 
 import btree.BlockchainNode;
-import btree.Node;
 import org.bitcoinj.core.Address;
 import org.bitcoinj.core.Coin;
 import org.bitcoinj.core.Transaction;
@@ -9,7 +8,6 @@ import org.bitcoinj.wallet.CoinSelector;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import static storage.WalletManager.setupWallet;
@@ -25,7 +23,7 @@ public class StoreCredentials {
 
     public static void saveCredential(String credential) {
         setupWallet();
-        Address addr = EncryptAddress.createAddress(credential);
+        Address addr = GenerateAddress.createAddress(credential);
         Transaction tx = WalletManager.createTransaction(addr);
         String sentTx = WalletManager.send(tx);
         System.out.println("Transaction: " + sentTx);
@@ -156,7 +154,7 @@ public class StoreCredentials {
                 } else {
                     s = id + s;
                 }
-                ret.add(EncryptAddress.createAddress(s));
+                ret.add(GenerateAddress.createAddress(s));
                 count++;
             }
         return ret;

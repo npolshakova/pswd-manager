@@ -12,6 +12,9 @@ import org.bitcoinj.wallet.Wallet;
 import java.io.File;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Setups Bitcoin wallet and sends transactions
+ */
 public class WalletManager {
 
 

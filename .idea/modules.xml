@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/bitcoinpswd.iml" filepath="$PROJECT_DIR$/bitcoinpswd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpwd.iml" filepath="$PROJECT_DIR$/bpwd.iml" />
     </modules>
   </component>
 </project>
