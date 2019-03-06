@@ -1,120 +1,95 @@
 package btree;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class BTree {
 
-    Node root;
+    private static final int M = 4;
 
-    class Node {
+    private Node root;
+    private int height;
+    private int n;
 
-        Node parent;
-        Map<Integer, Node> children;
-        int key;
-        String credentials;
-        String transactionID;
+    // helper B-tree node data type
+    private static final class Node {
+        private int m;
+        private Entry[] children = new Entry[M];
 
-        public Node(int key, String credentials, String transactionID) {
-            this.key = key;
-            this.credentials = credentials;
-            this.transactionID = transactionID;
-            parent = null;
-            children = new HashMap<>();
+        // create a node with k children
+        private Node(int k) {
+            m = k;
         }
-
-        public void addChild(Node n) {
-            n.parent = this;
-            this.children.put(n.key, n);
-        }
-
-        public String getEncoding() {
-            StringBuilder sb = new StringBuilder();
-
-            // encode ID
-            sb.append(this.key);
-            // encode credential values
-            sb.append(this.credentials);
-            // for each child, get transaction ID
-            for(Node c : this.children.values()) {
-                sb.append(c.transactionID);
-            }
-            return sb.toString();
-        }
-
     }
 
-    public Node search(Node current, int key) {
-        if(current.key == key) {
-            return current;
-        } else {
-            for (Node c : current.children.values()) {
-                if(c.key == key) {
-                    return c;
-                } else if(c.key < key) {
-                    return search(c, key);
+    private static class Entry {
+        private int key;
+        private String val;
+        private Node next;
+        public Entry(int key, String val, Node next) {
+            this.key  = key;
+            this.val  = val;
+            this.next = next;
+        }
+    }
+
+    public BTree() {
+        root = new Node(0);
+    }
+
+    public void insert(int key, String val) {
+        Node u = insertHeper(root, key, val, height);
+        n++;
+        if (u == null) return;
+
+        // split
+        Node t = new Node(2);
+        t.children[0] = new Entry(root.children[0].key, null, root);
+        t.children[1] = new Entry(u.children[0].key, null, u);
+        root = t;
+        height++;
+    }
+
+    public void delete(int key) {
+        insert(key, null);
+    }
+
+    private Node insertHeper(Node h, int key, String val, int ht) {
+        int j;
+        Entry t = new Entry(key, val, null);
+
+        // external node
+        if (ht == 0) {
+            for (j = 0; j < h.m; j++) {
+                if (key < h.children[j].key) break;
+            }
+        }
+
+        // internal node
+        else {
+            for (j = 0; j < h.m; j++) {
+                if ((j+1 == h.m) || key < h.children[j+1].key) {
+                    Node u = insertHeper(h.children[j++].next, key, val, ht-1);
+                    if (u == null) return null;
+                    t.key = u.children[0].key;
+                    t.next = u;
+                    break;
                 }
             }
         }
 
-        return null;
+        for (int i = h.m; i > j; i--)
+            h.children[i] = h.children[i-1];
+        h.children[j] = t;
+        h.m++;
+        if (h.m < M) return null;
+        else         return split(h);
     }
 
 
-    public List<Node> update(Node oldNode, Node toUpdate) {
-        Node oldParent = oldNode.parent;
-        List<Node> path = insertParent(oldParent, toUpdate);
-        path.add(toUpdate);
-        return path;
-    }
-
-    // returns list of nodes to retransmit
-    public List<Node> insert(Node toInsert) {
-        Node parent = getParent(root, toInsert);
-        List<Node> path = insertParent(parent, toInsert);
-        path.add(toInsert);
-        return path;
-    }
-
-    private Node getParent(Node current, Node toInsert) {
-       if(current.children == null) {
-           return current;
-       } else {
-           int tmp = current.children.get(0).key;
-           if (tmp > toInsert.key) {
-               return current.children.get(0);
-           } else {
-               for (Node c : current.children.values()) {
-                   if (c.key < toInsert.key) {
-                       tmp = c.key;
-                   } else if(c.key > toInsert.key) {
-                       return getParent(current.children.get(tmp), toInsert);
-                   }
-               }
-               return current;
-           }
-       }
-    }
-
-    public List<Node> insertParent(Node oldParent, Node toInsert) {
-        Node newParent = updateChildren(oldParent, toInsert);
-        if(oldParent.equals(root)) {
-            List<Node> path = new ArrayList<>();
-            path.add(newParent);
-            return  path;
-        } else {
-            List<Node> path = insertParent(newParent.parent, toInsert);
-            path.add(newParent);
-            return path;
-        }
-    }
-
-    private Node updateChildren(Node oldParent, Node toInsert) {
-        oldParent.children.put(toInsert.key, toInsert);
-        toInsert.parent = oldParent;
-        return  oldParent;
+    private Node split(Node h) {
+        Node t = new Node(M/2);
+        h.m = M/2;
+        for (int j = 0; j < M/2; j++)
+            t.children[j] = h.children[M/2+j];
+        return t;
     }
 
 }

@@ -1,111 +1,149 @@
 package btree;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class BinaryTree {
+public class BinaryTree<T extends  Node> {
 
-    public Node root;
+    public T root;
 
-    public BinaryTree(int id, String value) {
-        root = new Node(id, value);
+    public List<T> insert(int id, String value) {
+        List<T> path = new ArrayList<>();
+        root = addRecursive(root, id, value, path);
+        return path;
     }
 
-    public Node search(Node n, int key) {
-        if (n == null || key == n.key) {
+    public List<T> insert(T n) {
+        List<T> path = new ArrayList<>();
+        root = addRecursive(root, n, path);
+        return path;
+    }
+
+    private T addRecursive(T current, T n, List<T> path) {
+        if (current == null) {
+            path.add(n);
             return n;
         }
-        if (key < n.key) {
-            return search(n.left, key);
+
+        if (n.key < current.key) {
+            path.add(current);
+            current.left = addRecursive((T) current.left, n, path);
+        } else if (n.key > current.key) {
+            path.add(current);
+            current.right = addRecursive((T) current.right, n, path);
         } else {
-            return search(n.right, key);
+            // value already exists
+            return current;
         }
+
+        return current;
     }
 
-    public List<Node> insert(int key, String value) {
-        List<Node> path = new ArrayList<>();
-        return insertHelper(root, path, key, value);
-    }
-
-    private List<Node> insertHelper(Node current, List<Node> path, int key, String value) {
+    private T addRecursive(T current, int id, String val, List<T> path) {
         if (current == null) {
-            current = new Node(key, value);
-            if(!path.isEmpty()) {
-                current.parent = path.get(path.size() - 1);
-            }
-            path.add(current);
-            return path;
-        } else if (key == current.key) {
-            // update value
-            current.value = value;
-            path.add(current);
-            return path;
-        } else if (key < current.key) {
-            path.add(current);
-            List<Node> ret = insertHelper(current.left, path, key, value);
-            current.left = ret.get(ret.size() - 1);
-            return ret;
-        } else {
-            path.add(current);
-            List<Node> ret = insertHelper(current.right, path, key, value);
-            current.right = ret.get(ret.size() - 1);
-            return ret;
+            T n = (T) new Node(id, val);
+            path.add(n);
+            return n;
         }
-    }
 
-
-    public List<Node> delete(int key) {
-        List<Node> path = new ArrayList<>();
-        return deleteHelper(root, path, key);
-    }
-
-    private List<Node> deleteHelper(Node current, List<Node> path, int key) {
-        if(key < current.key) {
+        if (id < current.key) {
             path.add(current);
-            return deleteHelper(current.left, path, key);
-        } else if(key > current.key) {
+            current.left = addRecursive((T) current.left, id, val, path);
+        } else if (id > current.key) {
             path.add(current);
-            return deleteHelper(current.right, path, key);
+            current.right = addRecursive((T) current.right, id, val, path);
         } else {
-            if (current.left != null && current.right != null) {
-                Node suc = current.right.findMin();
-                current.key = suc.key;
-                return deleteHelper(suc, path, suc.key);
-            } else if (current.left != null) {
-                replaceParent(current, current.left);
-            } else if(current.right != null) {
-                replaceParent(current, current.right);
+            // value already exists
+            return current;
+        }
+
+        return current;
+    }
+
+    public T search(int id) {
+        return containsNodeRecursive(root, id);
+    }
+
+    private T containsNodeRecursive(T current, int id) {
+        if (current == null) {
+            return current;
+        }
+        if (id == current.key) {
+            return current;
+        }
+        return id < current.key
+                ? containsNodeRecursive((T) current.left, id)
+                : containsNodeRecursive((T) current.right, id);
+    }
+
+    public List<T> delete(int value) {
+        List<T> path = new ArrayList<>();
+        root = deleteRecursive(root, value, path);
+        return path;
+    }
+
+    private T deleteRecursive(T current, int id, List<T> path) {
+        if (current == null) {
+            return null;
+        }
+
+        if (id == current.key) {
+            if (current.left == null && current.right == null) {
+                return null;
+            } else if (current.right == null) {
+                return (T) current.left;
+            } else if (current.left == null) {
+                return (T) current.right;
             } else {
-                replaceParent(current, null);
+                Node smallestValue = findSmallestValue((T) current.right);
+                current.key = smallestValue.key;
+                current.value = smallestValue.value;
+                current.right = deleteRecursive((T) current.right, smallestValue.key, path);
+                return current;
             }
         }
-        return null;
+        if (id < current.key) {
+            current.left = deleteRecursive((T) current.left, id, path);
+            path.add(current);
+            return current;
+        }
+        current.right = deleteRecursive((T) current.right, id, path);
+        path.add(current);
+        return current;
     }
 
-    private void replaceParent(Node current, Node newNode) {
-        if(current.parent != null) {
-            if (current == current.parent.left) {
-                current.parent.left = newNode;
-            } else if (current == current.parent.right) {
-                current.parent.right = newNode;
-            }
-        }
-
-        if (newNode != null) {
-            newNode.parent = current.parent;
-        }
+    private T findSmallestValue(T root) {
+        return root.left == null ? root : findSmallestValue((T) root.left);
     }
 
+    public void traversePrint(T node) {
+        if (node != null) {
+            traversePrint((T) node.left);
+            System.out.print("ID: " + node.key + " Value: " + node.value + ", ");
+            traversePrint((T) node.right);
+        }
+    }
 
     public static void main(String args[]) {
-        BinaryTree t = new BinaryTree(1, "hi");
-        t.insert(3, "ok");
-        System.out.println(t.root);
-        t.delete(1);
-        System.out.println(t.root);
+
+        BinaryTree bt = new BinaryTree();
+
+        bt.insert(6, "a");
+        bt.insert(4, "b");
+        bt.insert(8, "c");
+        bt.insert(3, "d");
+        bt.insert(5, "e");
+        bt.insert(7, "f");
+        bt.insert(9, "g");
+
+        //bt.traversePrint(bt.root);
+
+    }
+
+    public void insertAll(List<T> values) {
+        for(T v : values) {
+            insert(v);
+        }
     }
 
 }
-
-

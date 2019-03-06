@@ -4,113 +4,33 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>bitcoinpswd</groupId>
-    <artifactId>bitcoinpswd</artifactId>
+    <groupId>groupId</groupId>
+    <artifactId>bpwd</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <kotlin.version>1.2.71</kotlin.version>
-    </properties>
-
-
     <build>
         <plugins>
             <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <jvmTarget>1.8</jvmTarget>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.5</version>
                 <configuration>
-                    <source>7</source>
-                    <target>7</target>
+                    <forkMode>always</forkMode>
+                    <systemPropertyVariables>
+                        <slf4j-log4j12.configuration>file:${basedir}/src/main/resources/log4j.properties</slf4j-log4j12.configuration>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>api-v1-client-java-mvn-repo</id>
-            <url>https://raw.githubusercontent.com/blockchain/api-v1-client-java/mvn-repo/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.bitcoinj/bitcoinj-parent -->
-        <dependency>
-            <groupId>org.bitcoinj</groupId>
-            <artifactId>bitcoinj-parent</artifactId>
-            <version>0.14.7</version>
-            <type>pom</type>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.bitcoinj/bitcoinj-examples -->
-        <dependency>
-            <groupId>org.bitcoinj</groupId>
-            <artifactId>bitcoinj-examples</artifactId>
-            <version>0.14.7</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.bitcoinj/bitcoinj-tools -->
-        <dependency>
-            <groupId>org.bitcoinj</groupId>
-            <artifactId>bitcoinj-tools</artifactId>
-            <version>0.14.7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bitcoinj</groupId>
-            <artifactId>bitcoinj-core</artifactId>
-            <version>0.14.7</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>info.blockchain</groupId>
-            <artifactId>api</artifactId>
-            <version>LATEST</version> <!-- for a specific version see the list of tags -->
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
         <dependency>
@@ -119,39 +39,46 @@
             <version>2.25.1</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.5</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/net.sf.jopt-simple/jopt-simple -->
         <dependency>
             <groupId>net.sf.jopt-simple</groupId>
             <artifactId>jopt-simple</artifactId>
             <version>4.9</version>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>org.bitcoinj</groupId>
+            <artifactId>bitcoinj-core</artifactId>
+            <version>0.14.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.bitcoinj/bitcoinj-tools -->
+        <!-- Included logging-->
+        <!--<dependency>-->
+            <!--<groupId>org.bitcoinj</groupId>-->
+            <!--<artifactId>bitcoinj-tools</artifactId>-->
+            <!--<version>0.14.7</version>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.bitcoinj/wallettemplate -->
+        <dependency>
+            <groupId>org.bitcoinj</groupId>
+            <artifactId>wallettemplate</artifactId>
+            <version>0.14.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bitcoinj</groupId>
+            <artifactId>bitcoinj-core</artifactId>
+            <version>0.14.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+    </dependencies>
+    
 </project>
