@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bitcoinpswd.iml" filepath="$PROJECT_DIR$/bitcoinpswd.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bpwd.iml" filepath="$PROJECT_DIR$/bpwd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pswd-manager.iml" filepath="$PROJECT_DIR$/pswd-manager.iml" />
     </modules>
   </component>
 </project>

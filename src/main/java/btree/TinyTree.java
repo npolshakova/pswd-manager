@@ -18,18 +18,19 @@ public class TinyTree {
     public static void main(String args[]) throws InterruptedException {
 
         // Set up tiny tree
-        BinaryTree t = new BinaryTree();
-        t.insert(4, "V:helloworldhellowor");
-        t.insert(2, "V:applesauceapplesau");
-        t.insert(6, "V:quickbrownquickbro");
-        //t.insert(1, "V:chocolatecakeyummy");
-        //t.insert(3, "V:carrotcakeyumyummy");
-        //t.insert(5, "V:wowowowowowowowowo");
-        //t.insert(7, "V:thisisamessagetoyo");
+        BinaryTree<Node> t = new BinaryTree<Node>();
+        t.insert(4, "V:0helloworldhellowo");
+        t.insert(2, "V:0applesauceapplesa");
+        t.insert(6, "V:0quickbrownquickbr");
+        t.insert(1, "V:0chocolatecakeyumm");
+        t.insert(3, "V:0carrotcakeyumyumm");
+        t.insert(5, "V:0wowowowowowowowow");
+        t.insert(7, "V:0thisisamessagetoy");
         WalletManager.setupWallet();
 
         blockchainMagic(t.root);
         //914cec9183ee2343fee2ab7b0d55870dd6a074ed425a1b99cd8f7c63a6ab3e71
+        //0cca82a0c92d1ad472c17bbbf731c52c7bfc62d21821dd12db2f75e5d398cd0c
 
         // TODO: figure out why tx hash changes
 //        for(Transaction tx : txs) {

@@ -17,11 +17,13 @@ import java.util.Scanner;
  */
 public class Main {
 
-    public static String txHash = "334234f228eab414ea2395dbe6c34036a25505a76d5d3419153ed8b1f496d10d"; // TODO: Load tx from db
+    static boolean useEncrypt = false;
+    public static String txHash = "0cca82a0c92d1ad472c17bbbf731c52c7bfc62d21821dd12db2f75e5d398cd0c"; // TODO: Load tx from db
     //public static String txHash = null;
 
-    //30413fe6265ab329a02c4ab940b9fac8633f53f03429f1ac3a554b7a6b1a460b  // one value
-    //914cec9183ee2343fee2ab7b0d55870dd6a074ed425a1b99cd8f7c63a6ab3e71 // full tree
+    //334234f228eab414ea2395dbe6c34036a25505a76d5d3419153ed8b1f496d10d  // one value unencrypted
+    //0cca82a0c92d1ad472c17bbbf731c52c7bfc62d21821dd12db2f75e5d398cd0c // full tree unencrypted
+    //0b99d6db5cc29d60a20461f75a4df10f6de41227895909c7a98c0fc5811d6996 // encrypted one val
 
     public static void main(String args[]) throws Exception {
 
@@ -54,6 +56,9 @@ public class Main {
                 } else {
                     int id = Integer.parseInt(inputs[1]);
                     String val = inputs[2];
+                    if(useEncrypt) {
+                        val = aes.encrypt(val);
+                    }
                     BlockchainNode bn = new BlockchainNode(id, val);
                     List<BlockchainNode> path = bt.insert(bn);
                     String updatedHash = StoreCredentials.saveUpdatedTree(path);
@@ -79,7 +84,11 @@ public class Main {
                     if (n == null) {
                         System.out.println("ID: " + id + " not found");
                     } else {
-                        System.out.println("Value: " + n.value);
+                        String val = n.value;
+                        if(useEncrypt) {
+                            val = aes.decrypt(val);
+                        }
+                        System.out.println("Value: " + val);
                     }
                 }
             }
