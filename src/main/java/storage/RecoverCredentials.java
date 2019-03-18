@@ -121,7 +121,9 @@ public class RecoverCredentials {
                     int index = Integer.parseInt(String.valueOf(s.charAt(3)));
                     valueStrs.add(index, s.substring(4,21));
                 } else if (s.substring(1,4).equals("id:")) {
-                    id += s.charAt(4);
+                    System.out.println(s);
+                    s = s.split("x")[0];
+                    id += s.substring(4);
                 }
         }
 
@@ -138,6 +140,7 @@ public class RecoverCredentials {
             value += value + s;
         }
 
+        System.out.println(id);
         BlockchainNode bn = new BlockchainNode(Integer.parseInt(id), value);
         bn.leftTx = leftStr.toString();
         bn.rightTx = rightStr.toString();

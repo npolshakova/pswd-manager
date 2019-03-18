@@ -7,6 +7,7 @@ import storage.RecoverCredentials;
 import storage.StoreCredentials;
 import storage.WalletManager;
 import storage.encryption.AES;
+import storage.encryption.IDGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.Scanner;
 public class Main {
 
     static boolean useEncrypt = false;
-    public static String txHash = "0cca82a0c92d1ad472c17bbbf731c52c7bfc62d21821dd12db2f75e5d398cd0c"; // TODO: Load tx from db
+    public static String txHash = "7a8cb75395cca053f92709720b6f675d835a1890767a6b4b45210927925bf4f6"; // TODO: Load tx from db
     //public static String txHash = null;
 
     //334234f228eab414ea2395dbe6c34036a25505a76d5d3419153ed8b1f496d10d  // one value unencrypted
@@ -56,7 +57,7 @@ public class Main {
                 if(inputs.length < 3) {
                     System.out.println("Not enough inputs");
                 } else {
-                    int id = Integer.parseInt(inputs[1]);
+                    int id = IDGenerator.generateID(inputs[1]);
                     String val = inputs[2];
                     if(useEncrypt) {
                         val = aes.encrypt(val);
@@ -71,7 +72,7 @@ public class Main {
                 if(inputs.length < 2) {
                     System.out.println("Not enough inputs");
                 } else {
-                    int id = Integer.parseInt(inputs[1]);
+                    int id = IDGenerator.generateID(inputs[1]);
                     List<BlockchainNode> path = bt.delete(id);
                     String updatedHash = StoreCredentials.saveUpdatedTree(path);
                     txHash = updatedHash;
@@ -81,7 +82,7 @@ public class Main {
                 if(inputs.length < 2) {
                     System.out.println("Not enough inputs");
                 } else {
-                    int id = Integer.parseInt(inputs[1]);
+                    int id = IDGenerator.generateID(inputs[1]);
                     Node n = bt.search(id);
                     if (n == null) {
                         System.out.println("ID: " + id + " not found");
