@@ -12,6 +12,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
 
+// TODO: salt to address, add to original plaintext
+
 public class AES {
     final String key = "ssshhhhhhhhhhh!!!!";
     private SecretKeySpec secretKey;

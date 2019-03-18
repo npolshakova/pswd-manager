@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// Open ssl HMAC -> crypto/sec lib
+
 /**
  * REPL to add, delete, search
  */
@@ -35,7 +37,7 @@ public class Main {
 
         // Build tree
         BinaryTree<BlockchainNode> bt = new BinaryTree<BlockchainNode>();
-        if(txHash != null ) {
+        if(txHash != null ) { // replace with cache, hash table
             List<BlockchainNode> values = new ArrayList<>();
             RecoverCredentials.recoverAllValues(txHash, values);
             bt.insertAll(values);

@@ -2,26 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7de47318-058d-4115-ba1c-c8ed5e18b6a9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/storage/encryption/IDGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bpwd.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pswd-manager.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forwarding-service-testnet.spvchain" beforeDir="false" afterPath="$PROJECT_DIR$/forwarding-service-testnet.spvchain" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forwarding-service-testnet.wallet" beforeDir="false" afterPath="$PROJECT_DIR$/forwarding-service-testnet.wallet" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/btree/TinyTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/btree/TinyTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pswd-manager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pswd-manager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/btree/BTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/btree/BTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/encryption/AES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/encryption/AES.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/btree/BTree$Entry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/btree/BTree$Entry.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/btree/BTree$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/btree/BTree$Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/btree/BTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/btree/BTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/btree/TinyTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/btree/TinyTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/repl/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repl/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/EncryptAddress.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/RecoverCredentials.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/RecoverCredentials.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/StoreCredentials.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/StoreCredentials.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/WalletManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/WalletManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/WalletManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/WalletManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/storage/encryption/AES.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/encryption/AES.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,14 +27,77 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/repl/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
+            <state relative-caret-position="841">
+              <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/btree/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1160">
+              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/btree/BTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="638">
+              <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/storage/encryption/IDGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="319">
+              <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="870">
+              <caret line="85" column="23" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/btree/BinaryTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="14" selection-start-column="14" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gui/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -48,21 +105,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/btree/TinyTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="32" column="74" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
+            <state relative-caret-position="2030">
+              <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#477#483#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/storage/RecoverCredentials.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/storage/encryption/AES.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="121" selection-start-line="121" selection-end-line="121" />
+            <state relative-caret-position="174">
+              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -73,8 +132,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
-        <option value="Class" />
         <option value="Singleton" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -140,14 +199,16 @@
         <option value="$PROJECT_DIR$/src/main/java/tests/CheckUpdate.java" />
         <option value="$PROJECT_DIR$/src/main/java/btree/BinaryTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/btree/BTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/storage/EncryptAddress.java" />
         <option value="$PROJECT_DIR$/src/main/java/storage/GenerateAddress.java" />
         <option value="$PROJECT_DIR$/src/main/java/storage/RecoverCredentials.java" />
         <option value="$PROJECT_DIR$/src/main/java/storage/WalletManager.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/btree/TinyTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/storage/encryption/AES.java" />
         <option value="$PROJECT_DIR$/src/main/java/repl/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/btree/BTree.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/storage/encryption/IDGenerator.java" />
       </list>
     </option>
   </component>
@@ -178,7 +239,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -218,19 +279,44 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitcoinpswd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pswd-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="repl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitcoinpswd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pswd-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitcoinpswd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pswd-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+              <item name="encryption" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551883171296" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552934433624" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -250,13 +336,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.IDGenerator">
     <configuration name="CheckUpdate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tests.CheckUpdate" />
       <module name="bitcoinpswd" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IDGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="storage.encryption.IDGenerator" />
+      <module name="pswd-manager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="storage.encryption.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -297,80 +396,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TinyTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tests.TinyTree" />
-      <module name="bitcoinpswd" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <module name="pswd-manager" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <module name="pswd-manager" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.CheckUpdate" />
-      <item itemvalue="Application.TinyTree" />
       <item itemvalue="Application.RedoTransaction" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.TinyTree (1)" />
+      <item itemvalue="Application.IDGenerator" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.IDGenerator" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.TinyTree (1)" />
         <item itemvalue="Application.RedoTransaction" />
         <item itemvalue="Application.CheckUpdate" />
-        <item itemvalue="Application.TinyTree" />
       </list>
     </recent_temporary>
   </component>
@@ -426,7 +465,7 @@
     <frame x="134" y="35" width="3706" height="2125" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21779989" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22526258" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -435,7 +474,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32859176" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49889442" visible="true" weight="0.41635287" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.498618" visible="true" weight="0.41635287" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -443,7 +482,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4994472" weight="0.22162452" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5011056" side_tool="true" visible="true" weight="0.41635287" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.501382" side_tool="true" visible="true" weight="0.41635287" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.498618" weight="0.3281334" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -461,8 +500,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/log4j.properties" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bitcoinj/bitcoinj-core/0.14.7/bitcoinj-core-0.14.7.jar!/org/bitcoinj/protocols/channels/IPaymentChannelClient.class" />
     <entry file="file://$MAVEN_REPOSITORY$/org/bitcoinj/bitcoinj-examples/0.14.7/bitcoinj-examples-0.14.7.pom" />
     <entry file="jar://$MAVEN_REPOSITORY$/net/sf/jopt-simple/jopt-simple/4.9/jopt-simple-4.9.jar!/joptsimple/OptionSpec.class" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/bitcoinj/bitcoinj-core/0.14.7/bitcoinj-core-0.14.7.jar!/org/bitcoinj/core/NetworkParameters.class" />
@@ -518,49 +555,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/btree/Lookup.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/RedoTransaction.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/tests/TinyTree.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/btree/BinaryTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="95" column="41" selection-start-line="95" selection-start-column="41" selection-end-line="95" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/btree/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1160">
-          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/bitcoinj/bitcoinj-core/0.14.7/bitcoinj-core-0.14.7.jar!/org/bitcoinj/core/Base58.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1442">
           <caret line="116" column="63" selection-start-line="116" selection-start-column="63" selection-end-line="116" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/btree/BTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-          <folding>
-            <element signature="e#370#371#0" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#734#735#0" expanded="true" />
-            <element signature="e#1136#1137#0" expanded="true" />
-            <element signature="e#1169#1170#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -582,13 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pswd-manager.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -603,21 +594,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/btree/TinyTree.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/repl/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="32" column="74" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
+        <state relative-caret-position="841">
+          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#477#483#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repl/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/btree/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
+        <state relative-caret-position="1160">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/btree/BinaryTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/btree/TinyTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2030">
+          <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/btree/BTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="85" column="23" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/storage/encryption/AES.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/storage/encryption/IDGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

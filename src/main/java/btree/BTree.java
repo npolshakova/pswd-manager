@@ -1,5 +1,8 @@
 package btree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * TODO: Add paths to update for insert and delete
  */
@@ -37,10 +40,11 @@ public class BTree {
         root = new Node(0);
     }
 
-    public void insert(int key, String val) {
-        Node u = insertHeper(root, key, val, height);
+    public List<Node> insert(int key, String val) {
+        List<Node> l = new ArrayList<>();
+        Node u = insertHelper(root, key, val, height, l);
         n++;
-        if (u == null) return;
+        if (u == null) return null;
 
         // split
         Node t = new Node(2);
@@ -48,20 +52,26 @@ public class BTree {
         t.children[1] = new Entry(u.children[0].key, null, u);
         root = t;
         height++;
+        l.add(t);
+        return l;
     }
 
-    public void delete(int key) {
-        insert(key, null);
+    public List<Node> delete(int key) {
+        List<Node> l = new ArrayList<>();
+        return insert(key, null);
     }
 
-    private Node insertHeper(Node h, int key, String val, int ht) {
+    private Node insertHelper(Node h, int key, String val, int ht, List<Node> l) {
         int j;
         Entry t = new Entry(key, val, null);
 
         // external node
         if (ht == 0) {
             for (j = 0; j < h.m; j++) {
-                if (key < h.children[j].key) break;
+                if (key < h.children[j].key) {
+                    l.add(h);
+                    break;
+                }
             }
         }
 
@@ -69,7 +79,8 @@ public class BTree {
         else {
             for (j = 0; j < h.m; j++) {
                 if ((j+1 == h.m) || key < h.children[j+1].key) {
-                    Node u = insertHeper(h.children[j++].next, key, val, ht-1);
+                    l.add(h);
+                    Node u = insertHelper(h.children[j++].next, key, val, ht-1, l);
                     if (u == null) return null;
                     t.key = u.children[0].key;
                     t.next = u;
