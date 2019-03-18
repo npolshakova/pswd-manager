@@ -60,7 +60,7 @@ public class Main {
                     int id = IDGenerator.generateID(inputs[1]);
                     String val = inputs[2];
                     if(useEncrypt) {
-                        val = aes.encrypt(val);
+                        val = aes.encrypt(val, false);
                     }
                     BlockchainNode bn = new BlockchainNode(id, val);
                     List<BlockchainNode> path = bt.insert(bn);
@@ -89,7 +89,7 @@ public class Main {
                     } else {
                         String val = n.value;
                         if(useEncrypt) {
-                            val = aes.decrypt(val);
+                            val = aes.decrypt(val, false);
                         }
                         System.out.println("Value: " + val);
                     }

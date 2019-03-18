@@ -27,7 +27,7 @@ public class GenerateAddress {
         AES a = null;
         try {
             a = new AES();
-            String encodedCredentials = a.encrypt(credentials);
+            String encodedCredentials = a.encrypt(credentials, false);
             return createAddress(encodedCredentials);
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,12 +58,12 @@ public class GenerateAddress {
         return Base58.encode(addressBytes);
     }
 
-    // TODO
+
     public static String decodeAddressEncrypted(String adr) {
         try {
             AES a = new AES();
             String encoded = decodeAddress(adr);
-            return a.decrypt(encoded);
+            return a.decrypt(encoded, false);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
