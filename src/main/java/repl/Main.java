@@ -40,7 +40,7 @@ public class Main {
         BinaryTree<BlockchainNode> bt = new BinaryTree<BlockchainNode>();
         if(txHash != null ) { // replace with cache, hash table
             List<BlockchainNode> values = new ArrayList<>();
-            RecoverCredentials.recoverAllValues(txHash, values);
+            RecoverCredentials.recoverBinaryTree(txHash, values);
             bt.insertAll(values);
         }
 

@@ -5,8 +5,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import datastruct.LinkedList;
+import datastruct.LinkedNode;
 import datastruct.StorageNode;
 import org.bitcoinj.core.Address;
+import org.bitcoinj.core.Transaction;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -28,7 +31,7 @@ public class RecoverCredentials {
         //445edf4f19a1893b59adf7d811aa5bc0874da4755d4239abc656da09735524a0
 
         List<BlockchainNode> values = new ArrayList<>();
-        recoverAllValues(txHash, values);
+        recoverBinaryTree(txHash, values);
 
     }
 
@@ -37,8 +40,8 @@ public class RecoverCredentials {
      * @param value Transaction Hash as String
      * @param values Blockchain Nodes stored in blockchain
      */
-    public static void recoverAllValues(String value, List<BlockchainNode> values) {
-        BlockchainNode bn = recoverValue(value);
+    public static void recoverBinaryTree(String value, List<BlockchainNode> values) {
+        BlockchainNode bn = recoverBinaryTreeNode(value);
         if(bn != null) {
             values.add(bn);
             try {
@@ -48,11 +51,11 @@ public class RecoverCredentials {
             }
 
             if (!bn.leftTx.equals("")) {
-                recoverAllValues(bn.leftTx, values);
+                recoverBinaryTree(bn.leftTx, values);
             }
 
             if (!bn.rightTx.equals("")) {
-                recoverAllValues(bn.rightTx, values);
+                recoverBinaryTree(bn.rightTx, values);
             }
         }
     }
@@ -62,7 +65,7 @@ public class RecoverCredentials {
      * @param txHash Transaction Hash
      * @return Blockchain Node stored at hash
      */
-    public static BlockchainNode recoverValue(String txHash) {
+    public static BlockchainNode recoverBinaryTreeNode(String txHash) {
         Client client = ClientBuilder.newClient();
         WebTarget resource = client.target("https://api.blockcypher.com/v1/btc/test3/txs/" + txHash);
 
@@ -84,7 +87,7 @@ public class RecoverCredentials {
                     addr.add(str.replaceAll("\\[", "").replaceAll("\\]", ""));
                 }
             }
-            BlockchainNode bn = recoverTransactions(addr);
+            BlockchainNode bn = recoverTransactionsBinaryTree(addr);
             return bn;
         } else {
             System.out.println("ERROR! " + response.getStatus());
@@ -98,7 +101,7 @@ public class RecoverCredentials {
      * @param addr
      * @return
      */
-    private static BlockchainNode recoverTransactions(List<String> addr) {
+    private static BlockchainNode recoverTransactionsBinaryTree(List<String> addr) {
         String[] left = {"", "", "", ""};
         String[] right = {"", "", "", ""};
         String id = "";
@@ -219,4 +222,126 @@ public class RecoverCredentials {
 
     }
 
+    public static LinkedNode recoverLinkedNode(String txHash) {
+        Client client = ClientBuilder.newClient();
+        WebTarget resource = client.target("https://api.blockcypher.com/v1/btc/test3/txs/" + txHash);
+
+        Invocation.Builder request = resource.request();
+        request.accept(MediaType.APPLICATION_JSON_TYPE);
+
+        Response response = request.get();
+
+        if (response.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL) {
+            String body = response.readEntity(String.class);
+            JsonParser parser = new JsonParser();
+            JsonObject jo = parser.parse(body).getAsJsonObject();
+            JsonElement outputs = jo.get("outputs");
+            JsonArray jr = outputs.getAsJsonArray();
+            List<String> addr = new ArrayList<>();
+            for (JsonElement j : jr) {
+                String str = j.getAsJsonObject().get("addresses").toString().replaceAll("[\"]", "");
+                if(!str.equals("null")) {
+                    addr.add(str.replaceAll("\\[", "").replaceAll("\\]", ""));
+                }
+            }
+            LinkedNode sn = recoverTransactionsLinkedNode(addr);
+            return sn;
+        } else {
+            System.out.println("ERROR! " + response.getStatus());
+            System.out.println(response.getEntity());
+            return null;
+        }
+    }
+
+    private static LinkedNode recoverTransactionsLinkedNode(List<String> addr) {
+        Map<Integer, String> credentials = new HashMap<>();
+        List<Address> addressList = new ArrayList<>();
+        String[] txParts = {"", "", "", ""};
+
+        Map<Integer, List<String>> assembleCred = new HashMap<>();
+        for(String a : addr) {
+            addressList.add(Address.fromBase58(WalletManager.params, a));
+            String s = GenerateAddress.decodeAddress(a);
+            if (s.charAt(1) == '$') {
+                int index = Integer.parseInt(String.valueOf(s.charAt(2)));
+                if(s.substring(13,21).equals("xxxxxxxx")) {
+                    txParts[index] = s.substring(3,13);
+                } else {
+                    txParts[index] = s.substring(3, 21);
+                }
+            } else {
+                String[] parts = s.split("$");
+                int id = Integer.parseInt(parts[0]);
+                int count = Integer.parseInt(parts[1]);
+                String val = parts[2];
+                if (assembleCred.containsKey(id)) {
+                    assembleCred.get(id).add(count, val);
+                } else {
+                    List<String> vals = new ArrayList<>();
+                    vals.add(count, val);
+                    assembleCred.put(id, vals);
+                }
+            }
+        }
+
+        for(Map.Entry<Integer, List<String>> m : assembleCred.entrySet()) {
+            String str = "";
+            for(String strpart : m.getValue()) {
+                str += strpart;
+            }
+            credentials.put(m.getKey(), str);
+        }
+
+        StringBuilder txStr = new StringBuilder();
+
+        for(int i = 0; i < 4; i++) {
+            txStr.append(txParts[i]);
+        }
+
+        LinkedNode ln = new LinkedNode(credentials, addressList, txStr.toString());
+
+        return ln;
+    }
+
+    public static LinkedList recoverLinkedList(Transaction txHash) {
+        Client client = ClientBuilder.newClient();
+        WebTarget resource = client.target("https://api.blockcypher.com/v1/btc/test3/txs/" + txHash);
+
+        Invocation.Builder request = resource.request();
+        request.accept(MediaType.APPLICATION_JSON_TYPE);
+
+        Response response = request.get();
+
+        if (response.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL) {
+            String body = response.readEntity(String.class);
+            JsonParser parser = new JsonParser();
+            JsonObject jo = parser.parse(body).getAsJsonObject();
+            JsonElement outputs = jo.get("outputs");
+            JsonArray jr = outputs.getAsJsonArray();
+            List<String> addr = new ArrayList<>();
+            for (JsonElement j : jr) {
+                String str = j.getAsJsonObject().get("addresses").toString().replaceAll("[\"]", "");
+                if(!str.equals("null")) {
+                    addr.add(str.replaceAll("\\[", "").replaceAll("\\]", ""));
+                }
+            }
+            LinkedList lst = recoverTransactionsLinkedList(addr);
+            return lst;
+        } else {
+            System.out.println("ERROR! " + response.getStatus());
+            System.out.println(response.getEntity());
+            return null;
+        }
+    }
+
+    private static LinkedList recoverTransactionsLinkedList(List<String> addr) {
+        List<LinkedNode> nodes = new ArrayList<>();
+        LinkedNode ln = recoverTransactionsLinkedNode(addr);
+        nodes.add(ln);
+        while(ln.nextTx != null) {
+            ln = recoverLinkedNode(ln.nextTx);
+            nodes.add(ln);
+        }
+        return new LinkedList(nodes);
+    }
 }

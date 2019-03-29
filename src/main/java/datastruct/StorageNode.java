@@ -17,11 +17,15 @@ import java.util.Map;
 
 public class StorageNode {
 
-    private static Map<Integer, String> credentials = new HashMap<>();
-    private static List<Address> addressList = new ArrayList<>();
+    public static Map<Integer, String> credentials = new HashMap<>();
+    public static List<Address> addressList = new ArrayList<>();
+
+    public StorageNode(){}
 
     public StorageNode(String transaction) {
-        RecoverCredentials.recoverStorageNode(transaction);
+        StorageNode s = RecoverCredentials.recoverStorageNode(transaction);
+        this.credentials = s.credentials;
+        this.addressList = s.addressList;
     }
 
     public StorageNode(Map<Integer, String> credentials, List<Address> addressList) {
