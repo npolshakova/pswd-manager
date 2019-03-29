@@ -3,6 +3,7 @@ package datastruct;
 import org.bitcoinj.core.Address;
 import storage.GenerateAddress;
 import storage.RecoverCredentials;
+import storage.StoreCredentials;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +43,12 @@ public class LinkedNode extends StorageNode{
         return newTx;
     }
 
-    // TODO
     public String updateTx(String tx) {
-        return null;
+        List<Address> addrs = StoreCredentials.format("$", tx, true);
+        List<Address> lst = new ArrayList<>();
+        lst.addAll(addressList);
+        lst.addAll(addrs);
+        String updatedTx = StoreCredentials.sendMultiple(lst);
+        return updatedTx;
     }
 }

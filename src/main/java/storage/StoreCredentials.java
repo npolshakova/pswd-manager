@@ -138,7 +138,7 @@ public class StoreCredentials {
         return tx.getHashAsString();
     }
 
-    private static List<Address> format(String id, String msg, boolean multAddr) {
+    public static List<Address> format(String id, String msg, boolean multAddr) {
         //V:helloworldhellowor
         assert(msg.length() < 170);
         int len = 19 - id.length();
