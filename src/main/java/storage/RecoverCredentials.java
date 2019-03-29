@@ -325,7 +325,7 @@ public class RecoverCredentials {
                     addr.add(str.replaceAll("\\[", "").replaceAll("\\]", ""));
                 }
             }
-            LinkedList lst = recoverTransactionsLinkedList(addr);
+            LinkedList lst = recoverTransactionsLinkedList(addr, txHash.getHashAsString());
             return lst;
         } else {
             System.out.println("ERROR! " + response.getStatus());
@@ -334,7 +334,7 @@ public class RecoverCredentials {
         }
     }
 
-    private static LinkedList recoverTransactionsLinkedList(List<String> addr) {
+    private static LinkedList recoverTransactionsLinkedList(List<String> addr, String tx) {
         List<LinkedNode> nodes = new ArrayList<>();
         LinkedNode ln = recoverTransactionsLinkedNode(addr);
         nodes.add(ln);
@@ -342,6 +342,6 @@ public class RecoverCredentials {
             ln = recoverLinkedNode(ln.nextTx);
             nodes.add(ln);
         }
-        return new LinkedList(nodes);
+        return new LinkedList(nodes, tx);
     }
 }
