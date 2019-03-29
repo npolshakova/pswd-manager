@@ -5,6 +5,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import datastruct.StorageNode;
+import org.bitcoinj.core.Address;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -13,7 +15,9 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RecoverCredentials {
 
@@ -146,6 +150,72 @@ public class RecoverCredentials {
         bn.rightTx = rightStr.toString();
 
         return bn;
+
+    }
+
+    public static StorageNode recoverStorageNode(String txHash) {
+        Client client = ClientBuilder.newClient();
+        WebTarget resource = client.target("https://api.blockcypher.com/v1/btc/test3/txs/" + txHash);
+
+        Invocation.Builder request = resource.request();
+        request.accept(MediaType.APPLICATION_JSON_TYPE);
+
+        Response response = request.get();
+
+        if (response.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL) {
+            String body = response.readEntity(String.class);
+            JsonParser parser = new JsonParser();
+            JsonObject jo = parser.parse(body).getAsJsonObject();
+            JsonElement outputs = jo.get("outputs");
+            JsonArray jr = outputs.getAsJsonArray();
+            List<String> addr = new ArrayList<>();
+            for (JsonElement j : jr) {
+                String str = j.getAsJsonObject().get("addresses").toString().replaceAll("[\"]", "");
+                if(!str.equals("null")) {
+                    addr.add(str.replaceAll("\\[", "").replaceAll("\\]", ""));
+                }
+            }
+            StorageNode sn = recoverTransactionsStorageNode(addr);
+            return sn;
+        } else {
+            System.out.println("ERROR! " + response.getStatus());
+            System.out.println(response.getEntity());
+            return null;
+        }
+    }
+
+    private static StorageNode recoverTransactionsStorageNode(List<String> addr) {
+        Map<Integer, String> credentials = new HashMap<>();
+        List<Address> addressList = new ArrayList<>();
+
+        Map<Integer, List<String>> assembleCred = new HashMap<>();
+        for(String a : addr) {
+            addressList.add(Address.fromBase58(WalletManager.params, a));
+            String s = GenerateAddress.decodeAddress(a);
+            String[] parts = s.split("$");
+            int id = Integer.parseInt(parts[0]);
+            int count = Integer.parseInt(parts[1]);
+            String val = parts[2];
+            if(assembleCred.containsKey(id)) {
+                assembleCred.get(id).add(count, val);
+            } else {
+                List<String> vals = new ArrayList<>();
+                vals.add(count,val);
+                assembleCred.put(id,vals);
+            }
+        }
+
+        for(Map.Entry<Integer, List<String>> m : assembleCred.entrySet()) {
+            String str = "";
+            for(String strpart : m.getValue()) {
+                str += strpart;
+            }
+            credentials.put(m.getKey(), str);
+        }
+
+        StorageNode sn = new StorageNode(credentials, addressList);
+
+        return sn;
 
     }
 

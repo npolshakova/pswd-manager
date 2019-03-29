@@ -54,11 +54,12 @@
 
         <!-- https://mvnrepository.com/artifact/org.bitcoinj/bitcoinj-tools -->
         <!-- Included logging-->
-        -<dependency>-
-            <groupId>org.bitcoinj</groupId>
-            <artifactId>bitcoinj-tools</artifactId>
-            <version>0.14.7</version>
+        <dependency>
+        <groupId>org.bitcoinj</groupId>
+        <artifactId>bitcoinj-tools</artifactId>
+        <version>0.14.7</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.bitcoinj/wallettemplate -->
         <dependency>
