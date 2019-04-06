@@ -303,7 +303,7 @@ public class RecoverCredentials {
         return ln;
     }
 
-    public static LinkedList recoverLinkedList(Transaction txHash) {
+    public static LinkedList recoverLinkedList(String txHash) {
         Client client = ClientBuilder.newClient();
         WebTarget resource = client.target("https://api.blockcypher.com/v1/btc/test3/txs/" + txHash);
 
@@ -325,7 +325,7 @@ public class RecoverCredentials {
                     addr.add(str.replaceAll("\\[", "").replaceAll("\\]", ""));
                 }
             }
-            LinkedList lst = recoverTransactionsLinkedList(addr, txHash.getHashAsString());
+            LinkedList lst = recoverTransactionsLinkedList(addr, txHash);
             return lst;
         } else {
             System.out.println("ERROR! " + response.getStatus());

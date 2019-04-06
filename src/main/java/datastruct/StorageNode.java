@@ -51,23 +51,23 @@ public class StorageNode {
         System.out.println("Transaction: " + tx.getHashAsString());
     }
 
-    public static String search(String domain) {
-        return credentials.get(domain);
+    public static String search(int id) {
+        return credentials.get(id);
     }
 
-    public static String update(String domain, String credential) {
-        return insert(domain, credential);
+    public static String update(int id, String credential) {
+        return insert(id, credential);
     }
 
-    public static String insert(String domain, String credential) {
-        credentials.put(IDGenerator.generateID(domain), credential);
+    public static String insert(int id, String credential) {
+        credentials.put(id, credential);
         updateAddressList();
         String tx = StoreCredentials.sendMultiple(addressList);
         return tx;
     }
 
-    public static String delete(String domain) {
-        credentials.remove(IDGenerator.generateID(domain));
+    public static String delete(int id) {
+        credentials.remove(id);
         updateAddressList();
         String tx = StoreCredentials.sendMultiple(addressList);
         return tx;
