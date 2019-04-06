@@ -27,21 +27,17 @@ public class LinkedNode extends StorageNode{
         this.nextTx = s.nextTx;
     }
 
-    public static String insert(int id, String credential, String tx) {
+    public String insert(int id, String credential, String tx) {
         String newTx = insert(id,credential);
         nextTx = tx;
         return newTx;
     }
 
-    public static String update(int id, String credential) {
+    public String update(int id, String credential) {
         String newTx = update(id,credential);
         return newTx;
     }
 
-    public static String delete(int id, String credential) {
-        String newTx = delete(id,credential);
-        return newTx;
-    }
 
     public String updateTx(String tx) {
         List<Address> addrs = StoreCredentials.format("$", tx, true);

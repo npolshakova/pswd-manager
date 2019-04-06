@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StorageNode {
+public class StorageNode implements Storage {
 
     public static Map<Integer, String> credentials = new HashMap<>();
     public static List<Address> addressList = new ArrayList<>();
@@ -51,22 +51,22 @@ public class StorageNode {
         System.out.println("Transaction: " + tx.getHashAsString());
     }
 
-    public static String search(int id) {
+    public String search(int id) {
         return credentials.get(id);
     }
 
-    public static String update(int id, String credential) {
+    public String update(int id, String credential) {
         return insert(id, credential);
     }
 
-    public static String insert(int id, String credential) {
+    public String insert(int id, String credential) {
         credentials.put(id, credential);
         updateAddressList();
         String tx = StoreCredentials.sendMultiple(addressList);
         return tx;
     }
 
-    public static String delete(int id) {
+    public String delete(int id) {
         credentials.remove(id);
         updateAddressList();
         String tx = StoreCredentials.sendMultiple(addressList);

@@ -1,19 +1,16 @@
 package datastruct;
 
-import org.bitcoinj.core.Transaction;
 import storage.RecoverCredentials;
 import storage.StoreCredentials;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class LinkedList {
+public class LinkedList implements Storage {
 
     //public static Map<Integer,String> credentials = new HashMap<>();
-    public static String txHead = null;
-    public static List<LinkedNode> nodes = new ArrayList<>();
+    public String txHead = null;
+    public List<LinkedNode> nodes = new ArrayList<>();
 
     public LinkedList() { }
 
@@ -28,7 +25,7 @@ public class LinkedList {
         this.txHead = tx;
     }
 
-    public static String search(int id) {
+    public String search(int id) {
         for(LinkedNode ln : nodes) {
             String str = ln.search(id);
             if(str != null) {
@@ -38,7 +35,7 @@ public class LinkedList {
         return null;
     }
 
-    public static String insert(int id, String credential) {
+    public String insert(int id, String credential) {
         if(nodes.size() > 0) {
             LinkedNode ln = nodes.get(0);
             if(ln.credentials.size() > 30) {
@@ -59,7 +56,7 @@ public class LinkedList {
         return txHead;
     }
 
-    public static String update(int id, String credential) {
+    public String update(int id, String credential) {
         List<LinkedNode> updatePath = new ArrayList<>();
         String tx = "";
         for(LinkedNode ln : nodes) {
@@ -82,13 +79,13 @@ public class LinkedList {
         return txHead;
     }
 
-    public static String delete(int id, String credential) {
+    public String delete(int id) {
         List<LinkedNode> updatePath = new ArrayList<>();
         String tx = "";
         for(LinkedNode ln : nodes) {
             String str = ln.search(id);
             if(str != null) {
-                tx = ln.delete(id,credential);
+                tx = ln.delete(id);
                 break;
             } else {
                 updatePath.add(ln);
