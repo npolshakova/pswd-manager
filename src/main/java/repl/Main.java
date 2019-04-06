@@ -1,20 +1,13 @@
 package repl;
 
-import btree.BinaryTree;
-import btree.BlockchainNode;
-import btree.Node;
 import datastruct.BlockchainBinaryTree;
 import datastruct.LinkedList;
 import datastruct.Storage;
 import datastruct.StorageNode;
-import storage.RecoverCredentials;
-import storage.StoreCredentials;
 import storage.WalletManager;
 import storage.encryption.AES;
 import storage.encryption.IDGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 // Open ssl HMAC -> crypto/sec lib
@@ -25,8 +18,8 @@ import java.util.Scanner;
 public class Main {
 
     static boolean useEncrypt = false;
-    public static String txHash = "7808eaf0099c407d07f273fbec5dd916dc681c6fdb49a07b600a542fbe8a255c"; // TODO: Load tx from db
-    //public static String txHash = null;
+    //public static String txHash = "7808eaf0099c407d07f273fbec5dd916dc681c6fdb49a07b600a542fbe8a255c"; // TODO: Load tx from db
+    public static String txHash = null;
 
     //334234f228eab414ea2395dbe6c34036a25505a76d5d3419153ed8b1f496d10d  // one value unencrypted
     //0cca82a0c92d1ad472c17bbbf731c52c7bfc62d21821dd12db2f75e5d398cd0c // full tree unencrypted
@@ -41,7 +34,7 @@ public class Main {
         // Initialize AES
         AES aes = new AES();
 
-        String mode = "node";
+        String mode = "tree";
 
         Storage bt = null;
         if(mode.equals("node")) {

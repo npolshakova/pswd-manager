@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BlockchainBinaryTree implements Storage {
 
-    public BinaryTree<BlockchainNode> bt = new BinaryTree<>();
+    public BinaryTree bt = new BinaryTree();
 
     public BlockchainBinaryTree(){}
 

@@ -88,7 +88,7 @@ public class StoreCredentials {
             return sendMultiple(toSend);
         } else {
             // Update Transactions
-            BlockchainNode bn = (BlockchainNode) lst.get(0);
+            BlockchainNode bn = lst.get(0);
 
             List<Address> toSend = new ArrayList<>();
 
@@ -105,7 +105,7 @@ public class StoreCredentials {
             }
 
 
-            BlockchainNode nextNode = (BlockchainNode) lst.get(1);
+            BlockchainNode nextNode = lst.get(1);
 
             if(bn.left != null && bn.left.key == nextNode.key) {
                 // Add left

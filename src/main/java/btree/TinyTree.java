@@ -19,7 +19,7 @@ public class TinyTree {
     public static void main(String args[]) throws InterruptedException {
 
         // Set up tiny tree
-        BinaryTree<Node> t = new BinaryTree<Node>();
+        BinaryTree t = new BinaryTree();
         t.insert(IDGenerator.generateID("www.google.com"), "V:0helloworldhellowo");
         t.insert(IDGenerator.generateID("amazon"), "V:0applesauceapplesa");
         t.insert(IDGenerator.generateID("gmail"), "V:0quickbrownquickbr");
@@ -33,7 +33,7 @@ public class TinyTree {
 
     }
 
-    private static String blockchainMagic(Node root) {
+    private static String blockchainMagic(BlockchainNode root) {
         List<Address> toSend = new ArrayList<>();
 
         Address addrValue = GenerateAddress.createAddress(root.value);

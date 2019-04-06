@@ -3,23 +3,23 @@ package btree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinaryTree<T extends  Node> {
+public class BinaryTree {
 
-    public T root;
+    public BlockchainNode root;
 
-    public List<T> insert(int id, String value) {
-        List<T> path = new ArrayList<>();
+    public List<BlockchainNode> insert(int id, String value) {
+        List<BlockchainNode> path = new ArrayList<>();
         root = addRecursive(root, id, value, path);
         return path;
     }
 
-    public List<T> insert(T n) {
-        List<T> path = new ArrayList<>();
+    public List<BlockchainNode> insert(BlockchainNode n) {
+        List<BlockchainNode> path = new ArrayList<>();
         root = addRecursive(root, n, path);
         return path;
     }
 
-    private T addRecursive(T current, T n, List<T> path) {
+    private BlockchainNode addRecursive(BlockchainNode current, BlockchainNode n, List<BlockchainNode> path) {
         if (current == null) {
             path.add(n);
             return n;
@@ -27,10 +27,10 @@ public class BinaryTree<T extends  Node> {
 
         if (n.key < current.key) {
             path.add(current);
-            current.left = addRecursive((T) current.left, n, path);
+            current.left = addRecursive(current.left, n, path);
         } else if (n.key > current.key) {
             path.add(current);
-            current.right = addRecursive((T) current.right, n, path);
+            current.right = addRecursive(current.right, n, path);
         } else {
             // value already exists
             return current;
@@ -39,19 +39,19 @@ public class BinaryTree<T extends  Node> {
         return current;
     }
 
-    private T addRecursive(T current, int id, String val, List<T> path) {
+    private BlockchainNode addRecursive(BlockchainNode current, int id, String val, List<BlockchainNode> path) {
         if (current == null) {
-            T n = (T) new Node(id, val);
+            BlockchainNode n = new BlockchainNode(id, val);
             path.add(n);
             return n;
         }
 
         if (id < current.key) {
             path.add(current);
-            current.left = addRecursive((T) current.left, id, val, path);
+            current.left = addRecursive(current.left, id, val, path);
         } else if (id > current.key) {
             path.add(current);
-            current.right = addRecursive((T) current.right, id, val, path);
+            current.right = addRecursive(current.right, id, val, path);
         } else {
             // value already exists
             return current;
@@ -60,11 +60,11 @@ public class BinaryTree<T extends  Node> {
         return current;
     }
 
-    public T search(int id) {
+    public BlockchainNode search(int id) {
         return containsNodeRecursive(root, id);
     }
 
-    private T containsNodeRecursive(T current, int id) {
+    private BlockchainNode containsNodeRecursive(BlockchainNode current, int id) {
         if (current == null) {
             return current;
         }
@@ -72,17 +72,17 @@ public class BinaryTree<T extends  Node> {
             return current;
         }
         return id < current.key
-                ? containsNodeRecursive((T) current.left, id)
-                : containsNodeRecursive((T) current.right, id);
+                ? containsNodeRecursive(current.left, id)
+                : containsNodeRecursive(current.right, id);
     }
 
-    public List<T> delete(int value) {
-        List<T> path = new ArrayList<>();
+    public List<BlockchainNode> delete(int value) {
+        List<BlockchainNode> path = new ArrayList<>();
         root = deleteRecursive(root, value, path);
         return path;
     }
 
-    private T deleteRecursive(T current, int id, List<T> path) {
+    private BlockchainNode deleteRecursive(BlockchainNode current, int id, List<BlockchainNode> path) {
         if (current == null) {
             return null;
         }
@@ -91,36 +91,36 @@ public class BinaryTree<T extends  Node> {
             if (current.left == null && current.right == null) {
                 return null;
             } else if (current.right == null) {
-                return (T) current.left;
+                return current.left;
             } else if (current.left == null) {
-                return (T) current.right;
+                return current.right;
             } else {
-                Node smallestValue = findSmallestValue((T) current.right);
+                BlockchainNode smallestValue = findSmallestValue(current.right);
                 current.key = smallestValue.key;
                 current.value = smallestValue.value;
-                current.right = deleteRecursive((T) current.right, smallestValue.key, path);
+                current.right = deleteRecursive(current.right, smallestValue.key, path);
                 return current;
             }
         }
         if (id < current.key) {
-            current.left = deleteRecursive((T) current.left, id, path);
+            current.left = deleteRecursive(current.left, id, path);
             path.add(current);
             return current;
         }
-        current.right = deleteRecursive((T) current.right, id, path);
+        current.right = deleteRecursive(current.right, id, path);
         path.add(current);
         return current;
     }
 
-    private T findSmallestValue(T root) {
-        return root.left == null ? root : findSmallestValue((T) root.left);
+    private BlockchainNode findSmallestValue(BlockchainNode root) {
+        return root.left == null ? root : findSmallestValue(root.left);
     }
 
-    public void traversePrint(T node) {
+    public void traversePrint(BlockchainNode node) {
         if (node != null) {
-            traversePrint((T) node.left);
+            traversePrint(node.left);
             System.out.print("ID: " + node.key + " Value: " + node.value + ", ");
-            traversePrint((T) node.right);
+            traversePrint(node.right);
         }
     }
 
@@ -140,8 +140,8 @@ public class BinaryTree<T extends  Node> {
 
     }
 
-    public void insertAll(List<T> values) {
-        for(T v : values) {
+    public void insertAll(List<BlockchainNode> values) {
+        for(BlockchainNode v : values) {
             insert(v);
         }
     }
