@@ -21,7 +21,12 @@ public class BlockchainBinaryTree implements Storage {
     }
 
     public String search(int id) {
-        return bt.search(id).value;
+        BlockchainNode b = bt.search(id);
+        if(b == null) {
+            return null;
+        } else {
+            return b.value;
+        }
     }
 
     public String update(int id, String credential) {
