@@ -78,7 +78,7 @@ public class BinaryTree {
 
     public List<BlockchainNode> delete(int value) {
         List<BlockchainNode> path = new ArrayList<>();
-        root = deleteRecursive(root, value, path);
+        root = deleteRecursive(root, value, path); // TODO root delete case
         return path;
     }
 

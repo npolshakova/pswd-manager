@@ -18,8 +18,8 @@ import java.util.Scanner;
 public class Main {
 
     static boolean useEncrypt = false;
-    //public static String txHash = "7808eaf0099c407d07f273fbec5dd916dc681c6fdb49a07b600a542fbe8a255c"; // TODO: Load tx from db
-    public static String txHash = null;
+    public static String txHash = "0d81cdd8fdef11526165c422bb80a137a8d29b1c74c61accf76ccf4c8e076fd1"; // TODO: Load tx from db
+    //public static String txHash = null;
 
     //334234f228eab414ea2395dbe6c34036a25505a76d5d3419153ed8b1f496d10d  // one value unencrypted
     //0cca82a0c92d1ad472c17bbbf731c52c7bfc62d21821dd12db2f75e5d398cd0c // full tree unencrypted

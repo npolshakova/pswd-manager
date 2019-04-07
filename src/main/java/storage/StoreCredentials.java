@@ -129,7 +129,7 @@ public class StoreCredentials {
     public static String sendMultiple(List<Address> toSend) {
         CoinSelector c = WalletManager.kit.wallet().getCoinSelector();
         Transaction tx = new Transaction(WalletManager.params);
-        Coin coinToSent = Coin.valueOf((long) 600.0);
+        Coin coinToSent = Coin.valueOf((long) 540.0);
         c.select(coinToSent, WalletManager.kit.wallet().calculateAllSpendCandidates());
         for(Address sendAddr : toSend) {
             tx.addOutput(coinToSent, sendAddr);
