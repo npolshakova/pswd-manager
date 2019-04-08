@@ -28,7 +28,7 @@ public class WalletManager {
     public static void setupWallet() {
         String filePrefix = "forwarding-service-testnet";
 
-        kit = new WalletAppKit(params, new File("."), filePrefix) {
+        kit = new WalletAppKit(params, new File("../"), filePrefix) {
             @Override
             protected void onSetupCompleted() {
                 if (wallet().getKeyChainGroupSize() < 1)

@@ -110,19 +110,22 @@ public class RecoverCredentials {
 
         for(String s : addr) {
                 s = GenerateAddress.decodeAddress(s);
-                if (s.charAt(1) == 'R') {
-                    int index = Integer.parseInt(String.valueOf(s.charAt(2)));
-                    if(s.substring(13,21).equals("xxxxxxxx")) {
-                        right[index] = s.substring(3,13);
+                if (s.substring(1,3).equals("R:")) {
+                    int index = Integer.parseInt(String.valueOf(s.charAt(3)));
+                    System.out.println(s.charAt(3));
+                    if(s.charAt(3) == '3') {
+                        System.out.println("AHH! " + s.substring(4,13));
+                        right[index] = s.substring(4,17);
                     } else {
-                        right[index] = s.substring(3, 21);
+                        System.out.println("okkkk! " + s);
+                        right[index] = s.substring(4, 21);
                     }
-                } else if (s.charAt(1) == 'L') {
-                    int index = Integer.parseInt(String.valueOf(s.charAt(2)));
-                    if(s.substring(13,21).equals("xxxxxxxx")) {
-                        left[index] = s.substring(3,13);
+                } else if (s.substring(1,3).equals("L:")) {
+                    int index = Integer.parseInt(String.valueOf(s.charAt(3)));
+                    if(s.charAt(3) == '3') {
+                        left[index] = s.substring(4,17);
                     } else {
-                        left[index] = s.substring(3, 21);
+                        left[index] = s.substring(4, 21);
                     }
                 } else if (s.substring(1,3).equals("V:")) {
                     int index = Integer.parseInt(String.valueOf(s.charAt(3)));
@@ -150,8 +153,9 @@ public class RecoverCredentials {
         System.out.println(id);
         BlockchainNode bn = new BlockchainNode(Integer.parseInt(id), value);
         bn.leftTx = leftStr.toString();
+        System.out.println(bn.leftTx);
         bn.rightTx = rightStr.toString();
-
+        System.out.println(bn.rightTx);
         return bn;
 
     }

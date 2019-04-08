@@ -14,11 +14,20 @@ import static storage.WalletManager.setupWallet;
 
 public class StoreCredentials {
 
+    /*
+    * d6124f468a743036db00ae61a7653d257c46ecb0a87c59325a626a5b12282000
+[2MzjoNJzhCJYcs3wxnCacuAsFb3ixqmF6nj, 2MzjpKfyQ6khDUf1Xp84qsPpuu6JK4WTnFT, 2MzjqmbLXmTBrHyQe8pzeToo4V82iAmSU5y, Ju3uxX2zumtjUhKP1X8f6p7ux3LwzMtNc]
+    * */
+
     public static void main(String args[]) {
-        Scanner scanner = new Scanner(System.in);
+        String input = "d6124f468a743036db00ae61a7653d257c46ecb0a87c59325a626a5b12282000";
+        List<Address>  addr = format("L", input,true);
+        System.out.println(addr);
+
+       /* Scanner scanner = new Scanner(System.in);
         System.out.println("credentials:");
         String credential = scanner.nextLine();
-        saveCredential(credential);
+        saveCredential(credential);*/
     }
 
     public static void saveCredential(String credential) {
@@ -41,7 +50,7 @@ public class StoreCredentials {
 
         if(root.left != null) {
             String leftTransactionHash = saveBinaryTree((BlockchainNode) root.left);
-            List<Address> addrs = format("L", leftTransactionHash, true);
+            List<Address> addrs = format("L:", leftTransactionHash, true);
             toSend.addAll(addrs);
             root.leftAddresses = addrs;
             root.leftTx = leftTransactionHash;
@@ -49,7 +58,7 @@ public class StoreCredentials {
 
         if(root.right != null){
             String rightTransactionHash = saveBinaryTree((BlockchainNode) root.right);
-            List<Address> addrs = format("R", rightTransactionHash, true);
+            List<Address> addrs = format("R:", rightTransactionHash, true);
             toSend.addAll(addrs);
             root.rightAddresses = addrs;
             root.rightTx = rightTransactionHash;
@@ -65,17 +74,14 @@ public class StoreCredentials {
             BlockchainNode bn = lst.get(0);
 
             List<Address> toSend = new ArrayList<>();
-            if(bn.idAddress == null) {
-                List<Address> addrValue = format("V:", String.valueOf(bn.value), true);
-                bn.setValueAddress(addrValue);
-                toSend.addAll(addrValue);
-                Address id = format("id:", String.valueOf(bn.key), false).get(0);
-                bn.setIdAddress(id);
-                toSend.add(id);
-            } else {
-                toSend.addAll(bn.valueAddress);
-                toSend.add(bn.idAddress);
-            }
+            List<Address> addrValue = format("V:", String.valueOf(bn.value), true);
+            System.out.println("Addr Values: " + addrValue);
+            bn.setValueAddress(addrValue);
+            toSend.addAll(addrValue);
+            Address id = format("id:", String.valueOf(bn.key), false).get(0);
+            System.out.println("Addr ID: " + id);
+            bn.setIdAddress(id);
+            toSend.add(id);
 
             if(!bn.rightAddresses.isEmpty()) {
                 toSend.addAll(bn.rightAddresses);
@@ -92,17 +98,14 @@ public class StoreCredentials {
 
             List<Address> toSend = new ArrayList<>();
 
-            if(bn.idAddress == null) {
                 List<Address> addrValue = format("V:", String.valueOf(bn.value), true);
+                System.out.println("Addr Values: " + addrValue);
                 bn.setValueAddress(addrValue);
                 toSend.addAll(addrValue);
                 Address id = format("id:", String.valueOf(bn.key), false).get(0);
                 bn.setIdAddress(id);
                 toSend.add(id);
-            } else {
-                toSend.addAll(bn.valueAddress);
-                toSend.add(bn.idAddress);
-            }
+                System.out.println("Addr ID: " + id);
 
 
             BlockchainNode nextNode = lst.get(1);
@@ -110,12 +113,16 @@ public class StoreCredentials {
             if(bn.left != null && bn.left.key == nextNode.key) {
                 // Add left
                 String leftTransactionHash = saveUpdatedTree(lst.subList(1,lst.size()));
-                List<Address> addrs = format("L", leftTransactionHash, true);
+                System.out.println("LEFT: " + leftTransactionHash);
+                List<Address> addrs = format("L:", leftTransactionHash, true);
+                System.out.println(addrs);
                 bn.leftAddresses = addrs;
             } else if(bn.right != null && bn.right.key == nextNode.key) {
                 // Add right
                 String rightTransactionHash = saveUpdatedTree(lst.subList(1,lst.size()));
-                List<Address> addrs = format("R", rightTransactionHash, true);
+                System.out.println("RIGHT: " + rightTransactionHash);
+                List<Address> addrs = format("R:", rightTransactionHash, true);
+                System.out.println(addrs);
                 bn.rightAddresses = addrs;
             }
 
@@ -127,9 +134,10 @@ public class StoreCredentials {
     }
 
     public static String sendMultiple(List<Address> toSend) {
+        System.out.println("send mult: " + toSend);
         CoinSelector c = WalletManager.kit.wallet().getCoinSelector();
         Transaction tx = new Transaction(WalletManager.params);
-        Coin coinToSent = Coin.valueOf((long) 540.0);
+        Coin coinToSent = Coin.valueOf((long) 540.0); // 540
         c.select(coinToSent, WalletManager.kit.wallet().calculateAllSpendCandidates());
         for(Address sendAddr : toSend) {
             tx.addOutput(coinToSent, sendAddr);
@@ -139,13 +147,12 @@ public class StoreCredentials {
     }
 
     public static List<Address> format(String id, String msg, boolean multAddr) {
-        //V:helloworldhellowor
         assert(msg.length() < 170);
         int len = 19 - id.length();
         List<Address> ret = new ArrayList<>();
-            String[] tmp = msg.split("(?<=\\G.{" + len + "})");
-            int count = 0;
-            for (String s : tmp) {
+        String[] tmp = msg.split("(?<=\\G.{" + len + "})");
+        int count = 0;
+        for (String s : tmp) {
                 while (s.length() < 17) {
                     s = s + "x";
                 }
@@ -154,6 +161,7 @@ public class StoreCredentials {
                 } else {
                     s = id + s;
                 }
+                System.out.println("s: " + s);
                 ret.add(GenerateAddress.createAddress(s));
                 count++;
             }
