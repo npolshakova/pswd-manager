@@ -1,5 +1,6 @@
 package storage;
 
+import btree.BTree;
 import btree.BlockchainNode;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -340,5 +341,97 @@ public class RecoverCredentials {
             nodes.add(ln);
         }
         return new LinkedList(nodes, tx);
+    }
+
+    public static BTree recoverBTree(String transaction) {
+        BTree bt = new BTree();
+        recoverBTreeNode(bt, transaction);
+        if(bt.root != null) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            for(BTree.Entry e : bt.root.children) {
+                recoverBTree(e.tx);
+            }
+        }
+        return bt;
+    }
+
+    public static void recoverBTreeNode(BTree bt, String txHash) {
+        Client client = ClientBuilder.newClient();
+        WebTarget resource = client.target("https://api.blockcypher.com/v1/btc/test3/txs/" + txHash);
+
+        Invocation.Builder request = resource.request();
+        request.accept(MediaType.APPLICATION_JSON_TYPE);
+
+        Response response = request.get();
+
+        if (response.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL) {
+            String body = response.readEntity(String.class);
+            JsonParser parser = new JsonParser();
+            JsonObject jo = parser.parse(body).getAsJsonObject();
+            JsonElement outputs = jo.get("outputs");
+            JsonArray jr = outputs.getAsJsonArray();
+            List<String> addr = new ArrayList<>();
+            for (JsonElement j : jr) {
+                String str = j.getAsJsonObject().get("addresses").toString().replaceAll("[\"]", "");
+                if(!str.equals("null")) {
+                    addr.add(str.replaceAll("\\[", "").replaceAll("\\]", ""));
+                }
+            }
+            recoverTransactionsBTree(bt, addr);
+        } else {
+            System.out.println("ERROR! " + response.getStatus());
+            System.out.println(response.getEntity());
+        }
+    }
+
+    private static void recoverTransactionsBTree(BTree bt, List<String> addr) {
+        List<List<String>> children = new ArrayList<>();
+        String id = "";
+
+        List<String> valueStrs = new ArrayList<>();
+
+        for(String s : addr) {
+            s = GenerateAddress.decodeAddress(s);
+            if (s.substring(1,3).equals("C:")) {
+                int childIndex = Integer.parseInt(String.valueOf(s.charAt(3)));
+                List<String> lst = children.get(childIndex);
+                if(lst == null) {
+                    lst = new ArrayList<>();
+                }
+                int index = Integer.parseInt(String.valueOf(s.charAt(5)));
+                if(index == 3) {
+                    lst.add(index, s.substring(6,17));
+                } else {
+                    lst.add(index, s.substring(6,21));
+                }
+            } else if (s.substring(1,3).equals("V:")) {
+                int index = Integer.parseInt(String.valueOf(s.charAt(3)));
+                valueStrs.add(index, s.substring(4,21));
+            } else if (s.substring(1,4).equals("id:")) {
+                s = s.split("x")[0];
+                id += s.substring(4);
+            }
+        }
+
+        List<String> transactionPointers = new ArrayList<>();
+        for(List<String> child : children) {
+            StringBuilder txStr = new StringBuilder();
+            for (int i = 0; i < 4; i++) {
+                txStr.append(child.get(i));
+            }
+            transactionPointers.add(txStr.toString());
+        }
+
+        String value = "";
+        for(String s : valueStrs) {
+            value += value + s;
+        }
+
+        bt.insert(Integer.parseInt(id), value);
     }
 }

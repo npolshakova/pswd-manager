@@ -19,7 +19,7 @@ public class CostCalc {
         //LinkedList lst = new LinkedList();
 
         WalletManager.setupWallet();
-        String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test2.csv";
+        String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test4.csv";
         String line = "";
         String cvsSplitBy = ",";
 

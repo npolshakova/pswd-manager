@@ -10,14 +10,18 @@ public class BTree {
 
     private static final int M = 4;
 
-    private Node root;
+    public Node root;
     private int height;
     private int n;
 
+    public void insertAll(List<Node> values) {
+        return;
+    }
+
     // helper B-tree node data type
-    private static final class Node {
-        private int m;
-        private Entry[] children = new Entry[M];
+    public static final class Node {
+        public int m;
+        public Entry[] children = new Entry[M];
 
         // create a node with k children
         private Node(int k) {
@@ -25,14 +29,20 @@ public class BTree {
         }
     }
 
-    private static class Entry {
-        private int key;
-        private String val;
-        private Node next;
+    public static class Entry {
+        public int key;
+        public String val;
+        public String tx;
+        public Node next;
         public Entry(int key, String val, Node next) {
             this.key  = key;
             this.val  = val;
             this.next = next;
+            this.tx = null;
+        }
+
+        public void setTx(String transaction) {
+            this.tx = transaction;
         }
     }
 
@@ -54,6 +64,30 @@ public class BTree {
         height++;
         l.add(t);
         return l;
+    }
+
+    public String search(int key) {
+        return searchHelper(root, key, height);
+    }
+
+    private String searchHelper(Node x, int key, int ht) {
+        Entry[] children = x.children;
+
+        // external node
+        if (ht == 0) {
+            for (int j = 0; j < x.m; j++) {
+                if (key == children[j].key) return children[j].val;
+            }
+        }
+
+        // internal node
+        else {
+            for (int j = 0; j < x.m; j++) {
+                if (j+1 == x.m || key < children[j+1].key)
+                    return searchHelper(children[j].next, key, ht-1);
+            }
+        }
+        return null;
     }
 
     public List<Node> delete(int key) {

@@ -1,5 +1,6 @@
 package storage;
 
+import btree.BTree;
 import btree.BlockchainNode;
 import org.bitcoinj.core.Address;
 import org.bitcoinj.core.Coin;
@@ -158,4 +159,50 @@ public class StoreCredentials {
         return ret;
     }
 
+    // TODO:
+    public static String saveUpdatedBTree(List<BTree.Node> lst) {
+        assert(lst.size() > 0);
+        if(lst.size() == 1) {
+            // Update Value
+            BTree.Node bn = lst.get(0);
+
+            List<Address> toSend = new ArrayList<>();
+
+            int count = 0;
+            for(BTree.Entry e : bn.children) {
+                List<Address> addrValue = format("V:", String.valueOf(e.val), true);
+                toSend.addAll(addrValue);
+                Address id = format("id:", String.valueOf(e.key), false).get(0);
+                toSend.add(id);
+                String idTx = "C:" + count;
+                List<Address> tx = format(idTx, String.valueOf(e.tx), true);
+                toSend.addAll(tx);
+                count++;
+            }
+
+            return sendMultiple(toSend);
+        } else {
+            // Update Transactions
+            BTree.Node bn = lst.get(0);
+
+            List<Address> toSend = new ArrayList<>();
+
+            BTree.Node nextNode = lst.get(1);
+            String txNext = saveUpdatedBTree(lst.subList(1,lst.size()));
+
+            int count = 0;
+            for(BTree.Entry e : bn.children) {
+                List<Address> addrValue = format("V:", String.valueOf(e.val), true);
+                toSend.addAll(addrValue);
+                Address id = format("id:", String.valueOf(e.key), false).get(0);
+                toSend.add(id);
+                String idTx = "C:" + count;
+                List<Address> tx = format(idTx, String.valueOf(e.tx), true);
+                toSend.addAll(tx);
+                count++;
+            }
+
+            return sendMultiple(toSend);
+        }
+    }
 }
