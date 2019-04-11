@@ -14,7 +14,6 @@ public class GenerateAddress {
      * @return Bitcoinj Base58 Address
      */
     public static Address createAddress(String credentials) {
-        System.out.println(credentials);
             assert(credentials.length() <= 20);
             byte[] hexMsg = asciiToHexArray(credentials);
             String adr = encodeChecked(196, hexMsg);

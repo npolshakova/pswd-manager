@@ -10,6 +10,7 @@ import org.bitcoinj.wallet.SendRequest;
 import org.bitcoinj.wallet.Wallet;
 
 import java.io.File;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -59,7 +60,7 @@ public class WalletManager {
         } catch (InsufficientMoneyException e) {
             e.printStackTrace();
         }
-        kit.wallet().commitTx(request.tx);
+
         TransactionBroadcast tb = kit.peerGroup().broadcastTransaction(request.tx);
         ListenableFuture listenableFuture = tb.future();
         try {

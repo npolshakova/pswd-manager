@@ -38,7 +38,7 @@ public class LinkedList implements Storage {
     public String insert(int id, String credential) {
         if(nodes.size() > 0) {
             LinkedNode ln = nodes.get(0);
-            if(ln.credentials.size() > 30) {
+            if(ln.credentials.size() > 10) {
                 // new node
                 LinkedNode newNode = new LinkedNode();
                 newNode.insert(id, credential, txHead);

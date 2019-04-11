@@ -49,7 +49,7 @@ public class StoreCredentials {
         toSend.add(id);
 
         if(root.left != null) {
-            String leftTransactionHash = saveBinaryTree((BlockchainNode) root.left);
+            String leftTransactionHash = saveBinaryTree(root.left);
             List<Address> addrs = format("L:", leftTransactionHash, true);
             toSend.addAll(addrs);
             root.leftAddresses = addrs;
@@ -57,7 +57,7 @@ public class StoreCredentials {
         }
 
         if(root.right != null){
-            String rightTransactionHash = saveBinaryTree((BlockchainNode) root.right);
+            String rightTransactionHash = saveBinaryTree(root.right);
             List<Address> addrs = format("R:", rightTransactionHash, true);
             toSend.addAll(addrs);
             root.rightAddresses = addrs;
@@ -75,11 +75,9 @@ public class StoreCredentials {
 
             List<Address> toSend = new ArrayList<>();
             List<Address> addrValue = format("V:", String.valueOf(bn.value), true);
-            System.out.println("Addr Values: " + addrValue);
             bn.setValueAddress(addrValue);
             toSend.addAll(addrValue);
             Address id = format("id:", String.valueOf(bn.key), false).get(0);
-            System.out.println("Addr ID: " + id);
             bn.setIdAddress(id);
             toSend.add(id);
 
@@ -99,13 +97,11 @@ public class StoreCredentials {
             List<Address> toSend = new ArrayList<>();
 
                 List<Address> addrValue = format("V:", String.valueOf(bn.value), true);
-                System.out.println("Addr Values: " + addrValue);
                 bn.setValueAddress(addrValue);
                 toSend.addAll(addrValue);
                 Address id = format("id:", String.valueOf(bn.key), false).get(0);
                 bn.setIdAddress(id);
                 toSend.add(id);
-                System.out.println("Addr ID: " + id);
 
 
             BlockchainNode nextNode = lst.get(1);
@@ -113,16 +109,12 @@ public class StoreCredentials {
             if(bn.left != null && bn.left.key == nextNode.key) {
                 // Add left
                 String leftTransactionHash = saveUpdatedTree(lst.subList(1,lst.size()));
-                System.out.println("LEFT: " + leftTransactionHash);
                 List<Address> addrs = format("L:", leftTransactionHash, true);
-                System.out.println(addrs);
                 bn.leftAddresses = addrs;
             } else if(bn.right != null && bn.right.key == nextNode.key) {
                 // Add right
                 String rightTransactionHash = saveUpdatedTree(lst.subList(1,lst.size()));
-                System.out.println("RIGHT: " + rightTransactionHash);
                 List<Address> addrs = format("R:", rightTransactionHash, true);
-                System.out.println(addrs);
                 bn.rightAddresses = addrs;
             }
 
@@ -134,10 +126,9 @@ public class StoreCredentials {
     }
 
     public static String sendMultiple(List<Address> toSend) {
-        System.out.println("send mult: " + toSend);
         CoinSelector c = WalletManager.kit.wallet().getCoinSelector();
         Transaction tx = new Transaction(WalletManager.params);
-        Coin coinToSent = Coin.valueOf((long) 540.0); // 540
+        Coin coinToSent = Coin.valueOf(546); // 546 vs. Transaction.REFERENCE_DEFAULT_MIN_TX_FEE
         c.select(coinToSent, WalletManager.kit.wallet().calculateAllSpendCandidates());
         for(Address sendAddr : toSend) {
             tx.addOutput(coinToSent, sendAddr);
@@ -161,7 +152,6 @@ public class StoreCredentials {
                 } else {
                     s = id + s;
                 }
-                System.out.println("s: " + s);
                 ret.add(GenerateAddress.createAddress(s));
                 count++;
             }

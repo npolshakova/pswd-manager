@@ -14,12 +14,12 @@ public class CostCalc {
 
     public static void main(String args[]) {
 
-        BlockchainBinaryTree bt = new BlockchainBinaryTree();
-        //StorageNode sn = new StorageNode();
+        //BlockchainBinaryTree bt = new BlockchainBinaryTree();
+        StorageNode sn = new StorageNode();
         //LinkedList lst = new LinkedList();
 
         WalletManager.setupWallet();
-        String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test1.csv";
+        String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test2.csv";
         String line = "";
         String cvsSplitBy = ",";
 
@@ -30,15 +30,14 @@ public class CostCalc {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(cvsSplitBy);
                 int id = IDGenerator.generateID(row[0]);
-                bt.insert(id, row[1]);
-                //sn.insert(id, row[1]);
+                //System.out.println(row[0]);
+                //String tx = bt.insert(id, row[1]);
+                //System.out.println("TX: " + tx);
+                sn.insert(id, row[1]);
                 //lst.insert(id, row[1]);
-                Thread.sleep(1);
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -46,5 +45,5 @@ public class CostCalc {
         System.out.println(finalBalance);
     }
 
-    //729969
+    //1166180
 }
