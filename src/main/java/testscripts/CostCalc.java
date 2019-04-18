@@ -12,10 +12,12 @@ import java.io.IOException;
 
 public class CostCalc {
 
+    // CAP at 19 transactions
+
     public static void main(String args[]) {
 
-        //BlockchainBinaryTree bt = new BlockchainBinaryTree();
-        StorageNode sn = new StorageNode();
+        BlockchainBinaryTree bt = new BlockchainBinaryTree();
+        //StorageNode sn = new StorageNode();
         //LinkedList lst = new LinkedList();
 
         WalletManager.setupWallet();
@@ -31,15 +33,18 @@ public class CostCalc {
                 String[] row = line.split(cvsSplitBy);
                 int id = IDGenerator.generateID(row[0]);
                 //System.out.println(row[0]);
-                //String tx = bt.insert(id, row[1]);
-                //System.out.println("TX: " + tx);
-                sn.insert(id, row[1]);
+                String tx = bt.insert(id, row[1]);
+                System.out.println("TX: " + tx);
+                //sn.insert(id, row[1]);
                 //lst.insert(id, row[1]);
+                //Thread.sleep(10000);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         Coin finalBalance = WalletManager.kit.wallet().getBalance();
         System.out.println(finalBalance);

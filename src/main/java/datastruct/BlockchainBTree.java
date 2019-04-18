@@ -1,14 +1,12 @@
 package datastruct;
 
 import btree.BTree;
-import btree.BlockchainNode;
 import storage.RecoverCredentials;
 import storage.StoreCredentials;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class BlockchainBTree {
+public class BlockchainBTree implements Storage {
 
     public BTree bt = new BTree();
 
@@ -28,13 +26,13 @@ public class BlockchainBTree {
 
     public String insert(int id, String credential) {
         List<BTree.Node> lst = bt.insert(id,credential);
-        String tx = StoreCredentials.saveUpdatedBTree(lst);
+        String tx = StoreCredentials.saveUpdatedBTree(lst).get(0);
         return tx;
     }
 
     public String delete(int id) {
         List<BTree.Node> lst = bt.delete(id);
-        String tx = StoreCredentials.saveUpdatedBTree(lst);
+        String tx = StoreCredentials.saveUpdatedBTree(lst).get(0);
         return tx;
     }
 

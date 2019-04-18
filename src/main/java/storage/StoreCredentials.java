@@ -134,6 +134,7 @@ public class StoreCredentials {
         for(Address sendAddr : toSend) {
             tx.addOutput(coinToSent, sendAddr);
         }
+        tx.setLockTime(2^256);
         WalletManager.send(tx);
         return tx.getHashAsString();
     }
@@ -159,9 +160,9 @@ public class StoreCredentials {
         return ret;
     }
 
-    // TODO:
-    public static String saveUpdatedBTree(List<BTree.Node> lst) {
+    public static List<String> saveUpdatedBTree(List<BTree.Node> lst) {
         assert(lst.size() > 0);
+        List<String> txRet = new ArrayList<>();
         if(lst.size() == 1) {
             // Update Value
             BTree.Node bn = lst.get(0);
@@ -180,15 +181,15 @@ public class StoreCredentials {
                 count++;
             }
 
-            return sendMultiple(toSend);
+            txRet.add(sendMultiple(toSend));
+            return txRet;
         } else {
             // Update Transactions
             BTree.Node bn = lst.get(0);
 
             List<Address> toSend = new ArrayList<>();
 
-            BTree.Node nextNode = lst.get(1);
-            String txNext = saveUpdatedBTree(lst.subList(1,lst.size()));
+            List<String> txNext = saveUpdatedBTree(lst.subList(1,lst.size()));
 
             int count = 0;
             for(BTree.Entry e : bn.children) {
@@ -197,12 +198,15 @@ public class StoreCredentials {
                 Address id = format("id:", String.valueOf(e.key), false).get(0);
                 toSend.add(id);
                 String idTx = "C:" + count;
-                List<Address> tx = format(idTx, String.valueOf(e.tx), true);
-                toSend.addAll(tx);
+                for(String txNextStr : txNext) {
+                    List<Address> tx = format(idTx, txNextStr, true);
+                    toSend.addAll(tx);
+                }
                 count++;
             }
 
-            return sendMultiple(toSend);
+            txRet.add(sendMultiple(toSend));
+            return txRet;
         }
     }
 }
