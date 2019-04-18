@@ -1,9 +1,6 @@
 package repl;
 
-import datastruct.BlockchainBinaryTree;
-import datastruct.LinkedList;
-import datastruct.Storage;
-import datastruct.StorageNode;
+import datastruct.*;
 import storage.WalletManager;
 import storage.encryption.AES;
 import storage.encryption.IDGenerator;
@@ -46,6 +43,8 @@ public class Main {
         } else if(mode.equals("tree")) {
             // Build tree
             bt = new BlockchainBinaryTree(txHash);
+        } else if(mode.equals("btree")) {
+            bt = new BlockchainBTree(txHash);
         }
         // Update values
         System.out.println("Enter credentials (c <id> <input>), delete (d <id>), search (s <id>) or (q) to Quit:");

@@ -54,7 +54,7 @@ public class BTree {
         List<Node> l = new ArrayList<>();
         Node u = insertHelper(root, key, val, height, l);
         n++;
-        if (u == null) return null;
+        if (u == null) return l;
 
         // split
         Node t = new Node(2);
@@ -101,9 +101,9 @@ public class BTree {
 
         // external node
         if (ht == 0) {
+            l.add(h);
             for (j = 0; j < h.m; j++) {
                 if (key < h.children[j].key) {
-                    l.add(h);
                     break;
                 }
             }
@@ -113,7 +113,6 @@ public class BTree {
         else {
             for (j = 0; j < h.m; j++) {
                 if ((j+1 == h.m) || key < h.children[j+1].key) {
-                    l.add(h);
                     Node u = insertHelper(h.children[j++].next, key, val, ht-1, l);
                     if (u == null) return null;
                     t.key = u.children[0].key;
@@ -121,6 +120,7 @@ public class BTree {
                     break;
                 }
             }
+            l.add(h);
         }
 
         for (int i = h.m; i > j; i--)

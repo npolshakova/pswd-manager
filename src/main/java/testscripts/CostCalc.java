@@ -16,9 +16,10 @@ public class CostCalc {
 
     public static void main(String args[]) {
 
-        BlockchainBinaryTree bt = new BlockchainBinaryTree();
+        //BlockchainBinaryTree bt = new BlockchainBinaryTree();
         //StorageNode sn = new StorageNode();
         //LinkedList lst = new LinkedList();
+        BlockchainBTree btree = new BlockchainBTree();
 
         WalletManager.setupWallet();
         String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test4.csv";
@@ -33,18 +34,16 @@ public class CostCalc {
                 String[] row = line.split(cvsSplitBy);
                 int id = IDGenerator.generateID(row[0]);
                 //System.out.println(row[0]);
-                String tx = bt.insert(id, row[1]);
-                System.out.println("TX: " + tx);
+                //String tx = bt.insert(id, row[1]);
+                //System.out.println("TX: " + tx);
                 //sn.insert(id, row[1]);
                 //lst.insert(id, row[1]);
-                //Thread.sleep(10000);
+                btree.insert(id, row[1]);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        }
 
         Coin finalBalance = WalletManager.kit.wallet().getBalance();
         System.out.println(finalBalance);
