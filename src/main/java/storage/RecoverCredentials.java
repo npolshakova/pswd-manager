@@ -1,6 +1,6 @@
 package storage;
 
-import btree.BTree;
+import btree.btree2;
 import btree.BlockchainNode;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -343,8 +343,8 @@ public class RecoverCredentials {
         return new LinkedList(nodes, tx);
     }
 
-    public static BTree recoverBTree(String transaction) {
-        BTree bt = new BTree();
+    public static btree2 recoverBTree(String transaction) {
+        btree2 bt = new btree2();
         recoverBTreeNode(bt, transaction);
         if(bt.root != null) {
             try {
@@ -353,14 +353,15 @@ public class RecoverCredentials {
                 e.printStackTrace();
             }
 
-            for(BTree.Entry e : bt.root.children) {
-                recoverBTree(e.tx);
+            for(btree2.Node n : bt.root.children) {
+                if(n != null)
+                recoverBTree(n.tx);
             }
         }
         return bt;
     }
 
-    public static void recoverBTreeNode(BTree bt, String txHash) {
+    public static void recoverBTreeNode(btree2 bt, String txHash) {
         Client client = ClientBuilder.newClient();
         WebTarget resource = client.target("https://api.blockcypher.com/v1/btc/test3/txs/" + txHash);
 
@@ -389,7 +390,7 @@ public class RecoverCredentials {
         }
     }
 
-    private static void recoverTransactionsBTree(BTree bt, List<String> addr) {
+    private static void recoverTransactionsBTree(btree2 bt, List<String> addr) {
         List<List<String>> children = new ArrayList<>();
         String id = "";
 
