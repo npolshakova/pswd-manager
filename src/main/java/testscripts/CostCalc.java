@@ -22,7 +22,7 @@ public class CostCalc {
         BlockchainBTree btree = new BlockchainBTree();
 
         WalletManager.setupWallet();
-        String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test4.csv";
+        String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test1.csv";
         String line = "";
         String cvsSplitBy = ",";
 

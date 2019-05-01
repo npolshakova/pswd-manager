@@ -120,10 +120,12 @@ public class btree2 {
             }
         }
 
-        for(Node n : h.children) {
-            if(n.canInsert()) {
-                l.add(n);
-                return insertHelper(h, key, val, l);
+        for(int i = 0; i < size; i++) {
+            Node n = h.children[i];
+            if(n == null) {
+                n = new Node();
+                h.children[i] = n;
+                return insertHelper(n, key, val, l);
             }
         }
 
