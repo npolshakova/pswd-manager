@@ -16,13 +16,13 @@ public class CostCalc {
 
     public static void main(String args[]) {
 
-        //BlockchainBinaryTree bt = new BlockchainBinaryTree();
+        BlockchainBinaryTree bt = new BlockchainBinaryTree();
         //StorageNode sn = new StorageNode();
         //LinkedList lst = new LinkedList();
-        BlockchainBTree btree = new BlockchainBTree();
+       //BlockchainBTree btree = new BlockchainBTree(5);
 
         WalletManager.setupWallet();
-        String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test1.csv";
+        String csvFile = "/home/npolshak/pswd-manager/src/main/resources/test5.csv";
         String line = "";
         String cvsSplitBy = ",";
 
@@ -34,11 +34,11 @@ public class CostCalc {
                 String[] row = line.split(cvsSplitBy);
                 int id = IDGenerator.generateID(row[0]);
                 //System.out.println(row[0]);
-                //String tx = bt.insert(id, row[1]);
+                String tx = bt.insert(id, row[1]);
                 //System.out.println("TX: " + tx);
                 //sn.insert(id, row[1]);
                 //lst.insert(id, row[1]);
-                btree.insert(id, row[1]);
+                //btree.insert(id, row[1]);
             }
 
         } catch (IOException e) {

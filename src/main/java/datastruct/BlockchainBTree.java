@@ -18,9 +18,17 @@ public class BlockchainBTree implements Storage {
         System.out.println(inst1.size());
     }
 
-    public btree2 bt = new btree2();
+    public btree2 bt;
 
-    public BlockchainBTree(){}
+    public BlockchainBTree(){
+        bt = new btree2();
+
+    }
+
+    public BlockchainBTree(int size){
+         bt = new btree2(size);
+
+    }
 
     public BlockchainBTree(String transaction) {
         if(transaction != null)
