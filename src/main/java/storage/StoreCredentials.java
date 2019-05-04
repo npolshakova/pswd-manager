@@ -5,9 +5,11 @@ import btree.BlockchainNode;
 import org.bitcoinj.core.Address;
 import org.bitcoinj.core.Coin;
 import org.bitcoinj.core.Transaction;
+import org.bitcoinj.core.TransactionInput;
 import org.bitcoinj.wallet.CoinSelector;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -137,7 +139,7 @@ public class StoreCredentials {
         for(Address sendAddr : toSend) {
             tx.addOutput(coinToSent, sendAddr);
         }
-        tx.setLockTime(2^256);
+        //tx.setLockTime(2^256);
         WalletManager.send(tx);
         return tx.getHashAsString();
     }

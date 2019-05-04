@@ -67,8 +67,12 @@ public class WalletManager {
             listenableFuture.get();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            tb = kit.peerGroup().broadcastTransaction(request.tx);
+            tb.future();
         } catch (ExecutionException e) {
             e.printStackTrace();
+            tb = kit.peerGroup().broadcastTransaction(request.tx);
+            tb.future();
         }
         return request.tx.getHashAsString();
     }

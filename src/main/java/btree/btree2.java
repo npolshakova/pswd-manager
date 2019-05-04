@@ -98,10 +98,13 @@ public class btree2 {
             }
         }
 
-        for(Node n : x.children) {
-            String tmp = searchHelper(n, key);
-            if(tmp != null) {
-                return tmp;
+        for(int i = 0; i < this.size; i++) {
+            if(key < x.values[i].key) {
+                Node n = x.children[i];
+                String tmp = searchHelper(n, key);
+                if (tmp != null) {
+                    return tmp;
+                }
             }
         }
         return null;
@@ -115,8 +118,25 @@ public class btree2 {
         l.add(h);
         for(int i = 0; i < size; i++) {
             if(h.values[i] == null) {
-                h.values[i] = new Entry(key, val);
-                return h;
+                if(i != 0) {
+                    if (key > h.values[i - 1].key) {
+                        h.values[i] = new Entry(key, val);
+                        return h;
+                    } else {
+                        if(h.children[i - 1] == null) {
+                            Node n = new Node(key, val);
+                            h.children[i - 1] = n;
+                            l.add(n);
+                            return n;
+                        } else {
+                            return insertHelper(h.children[i - 1] , key, val, l);
+                        }
+                    }
+                } else {
+                    h.values[i] = new Entry(key, val);
+                    return h;
+                }
+
             }
         }
 
