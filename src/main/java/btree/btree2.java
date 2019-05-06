@@ -111,7 +111,7 @@ public class btree2 {
     }
 
     public List<Node> delete(int key) {
-        return insert(key, null);
+        return insert(key, "N/A");
     }
 
     private Node insertHelper(Node h, int key, String val, List<Node> l) {
